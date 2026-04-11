@@ -1,5 +1,73 @@
-import { motion } from 'motion/react';
-import { PencilRuler, Trees, MapPin, Hammer } from 'lucide-react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'motion/react';
+import { PencilRuler, Trees, MapPin, Hammer, ChevronLeft, ChevronRight } from 'lucide-react';
+
+const designs = [
+  { title: 'The Belknap', beds: '4 Bedrooms', baths: '2.5 Bathrooms', sqft: '2,500 SF', img: '/belknap-front.png' },
+  { title: 'The Birchwood', beds: '3 Bedrooms', baths: '2.5 Bathrooms', sqft: '2,500 SF', img: '/birchwood-front.png' },
+  { title: 'The Dearborn', beds: '3 Bedrooms, 1 Office', baths: '3.5 Bathrooms', sqft: '2,500 SF', img: '/dearborn-front.png' },
+];
+
+function DesignCarousel() {
+  const [page, setPage] = useState(0);
+  const perPage = 2;
+  const totalPages = Math.ceil(designs.length / perPage);
+  const visible = designs.slice(page * perPage, page * perPage + perPage);
+
+  return (
+    <>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <AnimatePresence mode="wait">
+          {visible.map((plan, i) => (
+            <motion.div
+              key={plan.title}
+              initial={{ opacity: 0, x: i % 2 === 0 ? -60 : 60 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: i % 2 === 0 ? -30 : 30 }}
+              transition={{ duration: 0.6, delay: i * 0.15 }}
+              className="group cursor-pointer"
+            >
+              <div className="aspect-[16/10] overflow-hidden bg-surface-container-high mb-8 relative rounded-xl">
+                <img
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+                  src={plan.img}
+                  alt={plan.title}
+                />
+                <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              </div>
+              <h3 className="text-2xl font-light font-headline italic mb-2">{plan.title}</h3>
+              <div className="flex gap-4 text-xs font-label uppercase tracking-widest text-secondary">
+                <span>{plan.beds}</span>
+                <span>{plan.baths}</span>
+                <span>{plan.sqft}</span>
+              </div>
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </div>
+      <div className="flex justify-center items-center gap-6 mt-12">
+        <button
+          onClick={() => setPage(p => p - 1)}
+          disabled={page === 0}
+          className="p-3 rounded-full border border-stone-300 disabled:opacity-20 hover:bg-stone-100 transition-colors"
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+        <span className="font-label text-xs tracking-widest text-secondary">
+          {page + 1} / {totalPages}
+        </span>
+        <button
+          onClick={() => setPage(p => p + 1)}
+          disabled={page >= totalPages - 1}
+          className="p-3 rounded-full border border-stone-300 disabled:opacity-20 hover:bg-stone-100 transition-colors"
+        >
+          <ChevronRight className="w-5 h-5" />
+        </button>
+      </div>
+    </>
+  );
+}
 
 export default function Home() {
   return (
@@ -7,113 +75,80 @@ export default function Home() {
       {/* Full-screen Hero */}
       <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0 bg-stone-900">
-          <img 
-            className="w-full h-full object-cover opacity-60" 
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvBdzCAjKnJIHEb3suUdmvHZmjxMsOZzt6OWnY6xqHL_OGk6lYXAG3p-_mHLn-U4x930dKImz0fYCwOLKuuDjQC140MmZ0YlXpThQ4wqMgrYLENPIY6UvjHusJo9Z6f87Ps0prI1Ipik5WtS2GL6vn5xDFEPSxzSwC_LZwy8glGtKFUgBa8Yxqc9JR88-VUC6FKRNZZS-FFOvLaXrW8OJtkCzQ6nK0ufImrvCdJ89HrMZCm4kSv8cXXIfaSNpL_-CYVSGB5Yj0SaVB" 
-            alt="Luxury estate at twilight"
-            referrerPolicy="no-referrer"
+          <video
+            className="w-full h-full object-cover opacity-60"
+            src="/hero-video.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
           />
         </div>
         <div className="relative z-10 text-center px-6">
-          <motion.span 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="font-label uppercase tracking-[0.4em] text-xs text-white/80 mb-8 block"
-          >
-            Exclusivity in Every Detail
-          </motion.span>
-          <motion.h1 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="text-6xl md:text-8xl text-white font-light italic leading-tight"
+            transition={{ duration: 1 }}
           >
-            A Legacy of Refinement
-          </motion.h1>
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.8 }}
-            className="mt-12"
-          >
-            <button className="border border-white/30 backdrop-blur-md text-white px-10 py-4 hover:bg-white hover:text-stone-900 transition-all duration-500 font-label uppercase tracking-[0.2em] text-xs rounded-xl">
-              Discover the Collection
-            </button>
+            <img src="/logo.png" alt="Dearborn Woods" className="h-48 md:h-72 mx-auto" />
           </motion.div>
-        </div>
-      </section>
-
-      {/* Stat Bar */}
-      <section className="bg-surface-container py-16 px-12">
-        <div className="max-w-screen-2xl mx-auto flex flex-col md:flex-row justify-around items-center gap-12">
-          <div className="text-center">
-            <p className="text-primary text-4xl font-light font-headline italic mb-2">120</p>
-            <p className="font-label uppercase tracking-[0.1em] text-xs text-secondary">Acres of Private Forest</p>
-          </div>
-          <div className="w-px h-12 bg-outline-variant hidden md:block"></div>
-          <div className="text-center">
-            <p className="text-primary text-4xl font-light font-headline italic mb-2">14</p>
-            <p className="font-label uppercase tracking-[0.1em] text-xs text-secondary">Selected Estate Lots</p>
-          </div>
-          <div className="w-px h-12 bg-outline-variant hidden md:block"></div>
-          <div className="text-center">
-            <p className="text-primary text-4xl font-light font-headline italic mb-2">0.5</p>
-            <p className="font-label uppercase tracking-[0.1em] text-xs text-secondary">Miles of River Frontage</p>
-          </div>
-          <div className="w-px h-12 bg-outline-variant hidden md:block"></div>
-          <div className="text-center">
-            <p className="text-primary text-4xl font-light font-headline italic mb-2">24/7</p>
-            <p className="font-label uppercase tracking-[0.1em] text-xs text-secondary">Concierge Security</p>
-          </div>
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="font-label uppercase tracking-[0.4em] text-base text-white/80 mt-3 block"
+          >
+            A 13 New Custom Home Development<br />in Greenland, NH
+          </motion.span>
         </div>
       </section>
 
       {/* The Vision */}
-      <section className="py-32 px-12 bg-surface">
+      <motion.section
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
+        className="py-18 px-12 bg-surface"
+      >
         <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
             className="order-2 md:order-1"
           >
-            <span className="font-label uppercase tracking-[0.2em] text-xs text-primary mb-6 block">Our Philosophy</span>
+            <span className="font-label uppercase tracking-[0.2em] text-xs text-primary mb-6 block">The Development</span>
             <h2 className="text-5xl font-light leading-tight mb-8">The Vision of Seamless Living</h2>
             <p className="text-stone-600 font-body text-lg leading-relaxed mb-8">
               Dearborn Woods represents a harmonious convergence of untamed nature and architectural precision. Each residence is masterfully positioned to respect the topography of the land, ensuring that the ancient oaks and whispering pines remain the true protagonists of your experience.
             </p>
-            <a className="editorial-underline text-primary font-label uppercase tracking-[0.1em] text-xs py-2" href="#">Read our story</a>
+
           </motion.div>
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1 }}
-            className="order-1 md:order-2 relative h-[500px]"
+            className="order-1 md:order-2 relative w-full"
           >
             <img 
-              className="w-full h-full object-cover rounded-xl" 
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAS3vF6jvTEwcOGukVwYPfj1TIiRnq-F-0qYtOCn6bVMjXcq3_CrE_EdqFNIuooMgJWvNMM47lPsPYPDdRuJYSAMz7sLpOTdjGYBGIKxC6LlvhwPZsVYlUKPIYU98IASF13P_MZILTiqvPlQLR2Xwf-Z6HHpQcQAIQRAjb4OgcPy5P61Ido6OdSNi4xAXElMmkpj_RchUk60dyB_ylJWglUgRRW45VPt73Ya1PftnYjezwOqLViTuu-t13c0fhLPWSHbtiO6MGIDOc7" 
-              alt="Architectural detail"
-              referrerPolicy="no-referrer"
+              className="w-full h-auto object-contain rounded-xl"
+              src="/site-plan.png"
+              alt="Dearborn Woods Site Plan"
             />
-            <div className="absolute -bottom-8 -left-8 bg-surface-container-highest p-8 w-64 hidden lg:block rounded-xl shadow-xl">
+            <div className="absolute -top-8 -right-16 bg-surface-container-highest p-8 w-64 hidden lg:block rounded-xl shadow-xl">
               <p className="font-headline italic text-xl">"Architecture is the art of how we waste space."</p>
               <p className="font-label uppercase tracking-widest text-[10px] mt-4">— Philip Johnson</p>
             </div>
           </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* The Pillars */}
-      <section className="py-32 px-12 bg-surface-container-low">
+      <section className="py-20 px-10 bg-surface-container-low">
         <div className="max-w-screen-2xl mx-auto">
-          <div className="mb-24 text-center max-w-2xl mx-auto">
-            <h2 className="text-4xl italic font-light mb-4">Foundations of Excellence</h2>
-            <p className="text-secondary font-body">Four fundamental principles that guide every decision at Dearborn Woods.</p>
-          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
             {[
               { icon: PencilRuler, title: 'Modern Design', desc: 'Clean lines and expansive glass that invites the outside in, redefining luxury for the 21st century.' },
@@ -139,94 +174,56 @@ export default function Home() {
       </section>
 
       {/* Architectural Blueprints */}
-      <section className="py-32 px-12 bg-surface">
+      <motion.section
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
+        className="py-15 px-9 bg-surface"
+      >
         <div className="max-w-screen-2xl mx-auto">
           <div className="flex justify-between items-end mb-16">
             <div>
-              <span className="font-label uppercase tracking-[0.2em] text-xs text-primary mb-4 block">The Collection</span>
-              <h2 className="text-5xl font-light italic">Architectural Blueprints</h2>
+              <span className="font-label uppercase tracking-[0.2em] text-xs text-primary mb-4 block">The Designs</span>
+              <h2 className="text-5xl font-light italic">Home Designs</h2>
             </div>
-            <a className="editorial-underline text-primary font-label uppercase tracking-[0.1em] text-xs" href="#">View all plans</a>
+            <Link to="/floor-plans" className="editorial-underline text-primary font-label uppercase tracking-[0.1em] text-xs">View all plans</Link>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            {[
-              { title: 'The Birch Estate', beds: '5 Beds', baths: '4.5 Baths', sqft: '5,200 SQ FT', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBAktG15JWdEqZ7x1UkHLZolLtW_OEwrfSWfPYGelz4B5vQLPszp7b5WQBKZliOOAJkPThmjvinJihrCG4fs4eBgZDVd8gtyNXTjgu_vzbp4ub9wC_ta3jJdGO43K7Eq18lHhic2uJZCNQK2lAsXtoRXI-L0qjAeZwxp40Z24bfOpKIUdYEQWmuX9mprRG3ocHaCjnuo6f4Rr7fORzBn4w4vSg95mZvOaTjdWZPqMWf5CmGGPcjEToH-amkarBaq2eGs4sBymRhYjhD' },
-              { title: 'The River Run', beds: '4 Beds', baths: '3.5 Baths', sqft: '4,800 SQ FT', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDuEWE-PeDURbsqDfZxro1w6csCzKiaINZhMiKio1fuYWG-uN9tMvXspLbZPoNrgY6yZJAeTIxgp91K5r_h7PDGTjGmka0zTjb2yH8mcPNg05lvxH82EK9ZcUQWAQ5VJQtJLzXmwAIHqsSIp7ewjZo35yBwXnqRSfoUatpxwxCCwZ78TgOGAXP1di5DJ3Vi6FtOp1mAR6V3Xov5ywXSgk28yVnhElvgmKIo-1AIwgbh150HZMXvoDWP5hv2yIKMmdIVvN0QmBGNqEl7' },
-              { title: 'The Shadow Oak', beds: '6 Beds', baths: '5.5 Baths', sqft: '6,400 SQ FT', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuALL1rvvI8VwUyVtrU0IebETbV12IgmJ9_w8L2Y6OdU5DvAsc9PbEQh0rrb_y1donY0c2ZrHBHkcSG-sAcRZfv9zTjgxvvlteiYV3EJncfZUF8LJgJg7YM-eOjxicrRIlAcrZEoKE0_wkEWpJLI9MJCMVnlR1VgmjUmoTbRxAW3_SDYXIba6jw1i0kv3cN6YST3Er-jbv1nUI38CqDOTL33QjlKTztCtmnxvNW2DV43V9U8ObZ2JBkdc8zedjcnaEcoKFHIw82MAneB' },
-            ].map((plan, i) => (
-              <motion.div 
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="group cursor-pointer"
-              >
-                <div className="aspect-[3/4] overflow-hidden bg-surface-container-high mb-8 relative rounded-xl">
-                  <img 
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" 
-                    src={plan.img} 
-                    alt={plan.title}
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                </div>
-                <h3 className="text-2xl font-light font-headline italic mb-2">{plan.title}</h3>
-                <div className="flex gap-4 text-xs font-label uppercase tracking-widest text-secondary">
-                  <span>{plan.beds}</span>
-                  <span>{plan.baths}</span>
-                  <span>{plan.sqft}</span>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          <DesignCarousel />
         </div>
-      </section>
+      </motion.section>
 
       {/* River Birch Builders */}
-      <section className="py-32 px-12 bg-surface-container-highest">
+      <section className="py-24 px-12 bg-surface-container-highest">
         <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row gap-24 items-center">
           <div className="w-full md:w-1/2">
             <img 
               className="w-full aspect-[4/5] object-cover rounded-xl shadow-2xl" 
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBu7UfuLDZfJzlI6F7hJU8698NWMFrg0qZtW4fyLiAHEzgiHkbeteJs9tm1ELexuSqKJgbvb9Awf5rlsUOqQHrZD44sBm4U1boQT5EJ2MivGdlQKZOm0jxndx0Z6xSgMT95C13TZWR7bblRXsDkyCLDNLNPqKJmsHnlfJiNG5rC-g5tJYIHkn7R5s7CLbpNtEiv6CrGlE64xbIuY-gHfc0U7UrzatKZ4U17DGHpjFVs8lHLt8YXzabwZxpDUWMqk7NQNIQcrpKy0qXX" 
-              alt="Architectural drawing"
-              referrerPolicy="no-referrer"
+              src="/outside-farmhouse.jpg"
+              alt="Farmhouse exterior"
             />
           </div>
           <div className="w-full md:w-1/2">
-            <span className="font-label uppercase tracking-[0.2em] text-xs text-primary mb-6 block">Master Builders</span>
-            <h2 className="text-5xl font-light font-headline mb-8">River Birch Builders</h2>
+            <span className="font-label uppercase tracking-[0.2em] text-xs text-primary mb-6 block">Craftsmanship</span>
+            <h2 className="text-5xl font-light font-headline mb-8">River Birch Builders: Crafting Homes. Building Community</h2>
             <p className="text-stone-600 font-body text-lg leading-relaxed mb-12">
-              For over three decades, River Birch Builders has set the benchmark for luxury residential construction. Our commitment to artisanal craftsmanship and innovative building technology ensures each home in Dearborn Woods is a unique masterpiece.
+              At River Birch Builders our identity is forged through our unwavering dedication to quality craftsmanship and unmatched customer experiences. With a team of seasoned master builders and artisans, we bring decades of construction expertise to every project, constantly striving to surpass expectations. Our mission? Delivering impeccable craftsmanship and nurturing the connections that transform houses into homes.
             </p>
-            <div className="flex gap-16">
-              <div>
-                <p className="text-primary text-3xl font-light font-headline italic mb-1">35+</p>
-                <p className="font-label uppercase tracking-tighter text-[10px] text-secondary">Years of Experience</p>
-              </div>
-              <div>
-                <p className="text-primary text-3xl font-light font-headline italic mb-1">150</p>
-                <p className="font-label uppercase tracking-tighter text-[10px] text-secondary">Masterpieces Built</p>
-              </div>
-            </div>
+            <img src="/dearborn-header-sample.jpg" alt="Dearborn Woods" className="w-full mt-4" />
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-40 px-12 bg-[#705838] text-white text-center">
+      <section className="py-20 px-8 bg-[#2D5D5B] text-white text-center">
         <div className="max-w-screen-lg mx-auto">
-          <span className="font-label uppercase tracking-[0.4em] text-xs text-white/60 mb-8 block">Your Journey Begins</span>
-          <h2 className="text-6xl md:text-8xl font-light font-headline italic leading-tight mb-16">
-            Your Sanctuary Awaits
+          <span className="font-label uppercase tracking-[0.4em] text-xs text-white/60 mb-8 block">Let's Connect Today</span>
+          <h2 className="text-6xl md:text-8xl font-light font-headline italic leading-tight mb-8">
+            Your New Home Awaits
           </h2>
           <div className="flex flex-col md:flex-row gap-8 justify-center items-center">
             <button className="bg-white text-primary px-12 py-5 font-label uppercase tracking-[0.2em] text-xs hover:bg-stone-100 transition-colors rounded-xl">
               Schedule a Tour
-            </button>
-            <button className="border border-white/40 text-white px-12 py-5 font-label uppercase tracking-[0.2em] text-xs hover:bg-white/10 transition-colors rounded-xl">
-              Download Digital Brochure
             </button>
           </div>
         </div>

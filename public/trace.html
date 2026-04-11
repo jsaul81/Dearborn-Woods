@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lot Tracer</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: sans-serif; background: #1a1a1a; color: #fff; padding: 20px; }
+    .container { display: flex; gap: 20px; }
+    .map-wrap { position: relative; flex: 1; }
+    .map-wrap img { width: 100%; display: block; cursor: crosshair; }
+    .map-wrap svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+    .sidebar { width: 350px; }
+    h1 { margin-bottom: 10px; font-size: 20px; }
+    p.info { color: #aaa; font-size: 13px; margin-bottom: 20px; }
+    .lot-btn { padding: 6px 14px; margin: 3px; border: 1px solid #555; background: #333; color: #fff; cursor: pointer; border-radius: 4px; font-size: 13px; }
+    .lot-btn.active { background: #2D5D5B; border-color: #2D5D5B; }
+    .lot-btn.done { background: #555; border-color: #6FA08B; color: #6FA08B; }
+    .output { background: #111; padding: 12px; border-radius: 6px; margin-top: 15px; font-family: monospace; font-size: 11px; white-space: pre-wrap; word-break: break-all; max-height: 400px; overflow-y: auto; }
+    .actions { margin-top: 10px; display: flex; gap: 8px; }
+    .actions button { padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer; font-size: 13px; }
+    .btn-undo { background: #c44; color: #fff; }
+    .btn-clear { background: #666; color: #fff; }
+    .btn-copy { background: #2D5D5B; color: #fff; }
+    .dot { position: absolute; width: 8px; height: 8px; background: red; border-radius: 50%; transform: translate(-50%, -50%); pointer-events: none; }
+    .point-label { position: absolute; color: yellow; font-size: 10px; font-weight: bold; transform: translate(-50%, -150%); pointer-events: none; }
+    .instructions { background: #222; padding: 12px; border-radius: 6px; margin-bottom: 15px; font-size: 12px; line-height: 1.6; }
+    .instructions b { color: #6FA08B; }
+  </style>
+</head>
+<body>
+  <h1>Dearborn Woods Lot Tracer</h1>
+  <p class="info">Click on the image to trace lot boundaries. The coordinates will be used for the interactive map.</p>
+
+  <div class="container">
+    <div class="map-wrap" id="mapWrap">
+      <img src="/site-plan.png" alt="Site Plan" id="mapImg" />
+      <svg id="overlaySvg" viewBox="0 0 1000 1000" preserveAspectRatio="none"></svg>
+    </div>
+
+    <div class="sidebar">
+      <div class="instructions">
+        <b>1.</b> Select a lot number below<br>
+        <b>2.</b> Click corners of that lot on the map (clockwise)<br>
+        <b>3.</b> Select the next lot and repeat<br>
+        <b>4.</b> Click "Copy All" when done and paste it to me
+      </div>
+
+      <div>
+        <strong>Select Lot:</strong><br>
+        <div id="lotButtons" style="margin-top:8px"></div>
+      </div>
+
+      <div class="actions">
+        <button class="btn-undo" onclick="undoPoint()">Undo Point</button>
+        <button class="btn-clear" onclick="clearLot()">Clear Lot</button>
+        <button class="btn-copy" onclick="copyAll()">Copy All</button>
+      </div>
+
+      <div class="output" id="output">Select a lot and start clicking...</div>
+    </div>
+  </div>
+
+  <script>
+    const NUM_LOTS = 13;
+    let currentLot = null;
+    let lotData = {};
+    for (let i = 1; i <= NUM_LOTS; i++) lotData[i] = [];
+
+    const mapWrap = document.getElementById('mapWrap');
+    const mapImg = document.getElementById('mapImg');
+    const overlaySvg = document.getElementById('overlaySvg');
+    const output = document.getElementById('output');
+    const lotButtonsDiv = document.getElementById('lotButtons');
+
+    // Create lot buttons
+    for (let i = 1; i <= NUM_LOTS; i++) {
+      const btn = document.createElement('button');
+      btn.className = 'lot-btn';
+      btn.textContent = 'Lot ' + i;
+      btn.dataset.lot = i;
+      btn.onclick = () => selectLot(i);
+      lotButtonsDiv.appendChild(btn);
+    }
+
+    function selectLot(id) {
+      currentLot = id;
+      document.querySelectorAll('.lot-btn').forEach(b => {
+        b.classList.toggle('active', parseInt(b.dataset.lot) === id);
+      });
+      updateOutput();
+    }
+
+    mapImg.addEventListener('click', (e) => {
+      if (!currentLot) { alert('Select a lot first!'); return; }
+      const rect = mapImg.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width * 1000).toFixed(0);
+      const y = ((e.clientY - rect.top) / rect.height * 1000).toFixed(0);
+      lotData[currentLot].push({ x: parseInt(x), y: parseInt(y) });
+      updateOutput();
+      renderOverlay();
+    });
+
+    function undoPoint() {
+      if (!currentLot || lotData[currentLot].length === 0) return;
+      lotData[currentLot].pop();
+      updateOutput();
+      renderOverlay();
+    }
+
+    function clearLot() {
+      if (!currentLot) return;
+      lotData[currentLot] = [];
+      updateOutput();
+      renderOverlay();
+    }
+
+    function updateOutput() {
+      let text = '';
+      for (let i = 1; i <= NUM_LOTS; i++) {
+        const pts = lotData[i];
+        if (pts.length > 0) {
+          const pointStr = pts.map(p => `${p.x},${p.y}`).join(' ');
+          text += `'${i}': '${pointStr}',\n`;
+        }
+      }
+      output.textContent = text || 'Select a lot and start clicking...';
+
+      // Update button states
+      document.querySelectorAll('.lot-btn').forEach(b => {
+        const id = parseInt(b.dataset.lot);
+        if (lotData[id].length > 2) b.classList.add('done');
+        else b.classList.remove('done');
+      });
+    }
+
+    function renderOverlay() {
+      overlaySvg.innerHTML = '';
+      for (let i = 1; i <= NUM_LOTS; i++) {
+        const pts = lotData[i];
+        if (pts.length === 0) continue;
+
+        // Draw polygon if 3+ points
+        if (pts.length >= 3) {
+          const poly = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+          poly.setAttribute('points', pts.map(p => `${p.x},${p.y}`).join(' '));
+          poly.setAttribute('fill', 'rgba(45,93,91,0.3)');
+          poly.setAttribute('stroke', '#2D5D5B');
+          poly.setAttribute('stroke-width', '2');
+          overlaySvg.appendChild(poly);
+        }
+
+        // Draw points
+        pts.forEach((p, idx) => {
+          const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+          circle.setAttribute('cx', p.x);
+          circle.setAttribute('cy', p.y);
+          circle.setAttribute('r', '5');
+          circle.setAttribute('fill', currentLot === i ? 'red' : '#6FA08B');
+          overlaySvg.appendChild(circle);
+        });
+
+        // Draw lot label
+        if (pts.length > 0) {
+          const cx = pts.reduce((s, p) => s + p.x, 0) / pts.length;
+          const cy = pts.reduce((s, p) => s + p.y, 0) / pts.length;
+          const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+          text.setAttribute('x', cx);
+          text.setAttribute('y', cy);
+          text.setAttribute('text-anchor', 'middle');
+          text.setAttribute('fill', '#fff');
+          text.setAttribute('font-size', '24');
+          text.setAttribute('font-weight', 'bold');
+          text.textContent = i;
+          overlaySvg.appendChild(text);
+        }
+      }
+    }
+
+    function copyAll() {
+      let text = '';
+      for (let i = 1; i <= NUM_LOTS; i++) {
+        const pts = lotData[i];
+        if (pts.length > 0) {
+          const pointStr = pts.map(p => `${p.x},${p.y}`).join(' ');
+          text += `'${i}': '${pointStr}',\n`;
+        }
+      }
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Copied! Paste it to Claude.');
+      });
+    }
+  </script>
+</body>
+</html>
