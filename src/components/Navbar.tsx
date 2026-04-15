@@ -20,6 +20,8 @@ export default function Navbar() {
     { name: 'Contact', path: '/contact' },
   ];
 
+  const forceBlack = location.pathname !== '/';
+
   return (
     <nav className={`fixed top-0 w-full z-50 backdrop-blur-xl transition-all duration-500 ${
       scrolled ? 'bg-[#8DBCB0]/20 py-0' : 'bg-[#8DBCB0]/40'
@@ -29,7 +31,9 @@ export default function Navbar() {
       }`}>
         <Link to="/">
           <img src="/logo.png" alt="Dearborn Woods" className={`transition-all duration-500 ${
-            scrolled ? 'h-10 invert' : 'h-18 invert dark:invert-0'
+            scrolled
+              ? 'h-10 invert'
+              : (forceBlack ? 'h-18 invert' : 'h-18 dark:invert')
           }`} />
         </Link>
 
@@ -39,7 +43,7 @@ export default function Navbar() {
               key={link.path}
               to={link.path}
               className={`font-label uppercase tracking-[0.1em] text-sm transition-all duration-500 ${
-                scrolled
+                (scrolled || forceBlack)
                   ? (location.pathname === link.path
                     ? 'text-black border-b border-black pb-1'
                     : 'text-black hover:opacity-75')
