@@ -123,31 +123,28 @@ export default function FloorPlans() {
     {
       name: 'The Belknap',
       desc: 'A thoughtfully designed 4-bedroom home featuring quality craftsmanship and modern farmhouse aesthetics, perfectly suited for the Dearborn Woods community.',
-      area: '2,500 Sq Ft',
+      area: '2,770 Sq Ft',
       beds: '4 Bedrooms',
-      baths: '2.5 Bathrooms',
-      parking: '2 Car Garage',
-      ceilings: "9' Ceilings",
+      baths: '3 Bathrooms',
+      parking: '2 Cars',
       images: ['/belknap-front.png', '/belknap-floorplan.png'],
     },
     {
       name: 'The Birchwood',
       desc: 'An efficient and elegant 3-bedroom design that maximizes living space while maintaining the warmth and character that defines Dearborn Woods.',
-      area: '2,500 Sq Ft',
+      area: '2,544 Sq Ft',
       beds: '3 Bedrooms',
-      baths: '2.5 Bathrooms',
-      parking: '3 Car Garage',
-      ceilings: "9' Ceilings",
+      baths: '3 Bathrooms',
+      parking: '2 Cars',
       images: ['/birchwood-front.png', '/birchwood-floorplan.jpg'],
     },
     {
       name: 'The Dearborn',
       desc: 'Our signature floor plan featuring 3 bedrooms plus a dedicated office, offering versatile living with generous proportions and premium finishes throughout.',
-      area: '2,500 Sq Ft',
+      area: '3,071 Sq Ft',
       beds: '3 Bedrooms, 1 Office',
-      baths: '3.5 Bathrooms',
-      parking: '3 Car Garage',
-      ceilings: "9' Ceilings",
+      baths: '4 Bathrooms',
+      parking: '3 Cars',
       images: ['/dearborn-front.png', '/dearborn-floorplan.png'],
     }
   ];
@@ -196,8 +193,7 @@ export default function FloorPlans() {
                     { label: 'Total Area', value: model.area },
                     { label: 'Bedrooms', value: model.beds },
                     { label: 'Bathrooms', value: model.baths },
-                    { label: 'Parking', value: model.parking },
-                    { label: 'Ceilings', value: model.ceilings },
+                    { label: 'Garage Capacity', value: model.parking },
                   ].map((spec) => (
                     <div key={spec.label} className="flex justify-between items-end border-b border-outline-variant/30 pb-2">
                       <span className="font-label uppercase tracking-wider text-[10px] text-secondary">{spec.label}</span>
@@ -226,7 +222,7 @@ export default function FloorPlans() {
           <h2 className="text-5xl md:text-6xl font-light mb-8 max-w-2xl italic font-headline">Can't find the perfect fit?</h2>
           <p className="text-secondary max-w-xl mb-12 font-light leading-relaxed">Our architectural team offers limited custom modifications to any of our base floor plans to ensure your vision is realized without compromise.</p>
           <a className="text-primary border-b border-primary pb-1 font-label uppercase tracking-[0.1em] text-sm hover:opacity-70 transition-opacity" href="#">
-            Speak with a Consultant
+            Contact Us Today
           </a>
         </div>
       </motion.section>

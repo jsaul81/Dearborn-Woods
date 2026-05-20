@@ -57,11 +57,14 @@ export default function Navbar() {
           ))}
         </div>
 
-        <button className={`bg-primary hover:bg-primary-container text-on-primary px-6 transition-all duration-500 active:scale-95 font-label uppercase tracking-[0.1em] text-xs rounded-xl ${
-          scrolled ? 'py-2' : 'py-3'
-        }`}>
+        <a
+          href="mailto:info@dearbornwoodsnh.com"
+          className={`inline-block text-center bg-primary hover:bg-primary-container text-on-primary px-6 transition-all duration-500 active:scale-95 font-label uppercase tracking-[0.1em] text-xs rounded-xl ${
+            scrolled ? 'py-2' : 'py-3'
+          }`}
+        >
           Request a Viewing
-        </button>
+        </a>
       </div>
     </nav>
   );

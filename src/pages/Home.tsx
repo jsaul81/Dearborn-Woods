@@ -4,9 +4,9 @@ import { motion, AnimatePresence } from 'motion/react';
 import { PencilRuler, Trees, MapPin, Hammer, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const designs = [
-  { title: 'The Belknap', beds: '4 Bedrooms', baths: '2.5 Bathrooms', sqft: '2,500 SF', img: '/belknap-front.png' },
-  { title: 'The Birchwood', beds: '3 Bedrooms', baths: '2.5 Bathrooms', sqft: '2,500 SF', img: '/birchwood-front.png' },
-  { title: 'The Dearborn', beds: '3 Bedrooms, 1 Office', baths: '3.5 Bathrooms', sqft: '2,500 SF', img: '/dearborn-front.png' },
+  { title: 'The Belknap', beds: '4 Bedrooms', baths: '3 Bathrooms', sqft: '2,770 SF', img: '/belknap-front.png' },
+  { title: 'The Birchwood', beds: '3 Bedrooms', baths: '3 Bathrooms', sqft: '2,544 SF', img: '/birchwood-front.png' },
+  { title: 'The Dearborn', beds: '3 Bedrooms, 1 Office', baths: '4 Bathrooms', sqft: '3,071 SF', img: '/dearborn-front.png' },
 ];
 
 function DesignCarousel() {
@@ -122,7 +122,7 @@ export default function Home() {
             <span className="font-label uppercase tracking-[0.2em] text-xs text-primary mb-6 block">The Development</span>
             <h2 className="text-5xl font-light leading-tight mb-8">The Vision of Seamless Living</h2>
             <p className="text-stone-600 font-body text-lg leading-relaxed mb-8">
-              Dearborn Woods represents a harmonious convergence of untamed nature and architectural precision. Each residence is masterfully positioned to respect the topography of the land, ensuring that the ancient oaks and whispering pines remain the true protagonists of your experience.
+              Dearborn Woods blends natural surroundings with thoughtfully designed homes. Each residence is carefully positioned to complement the landscape, preserving the beauty of the mature trees and wooded setting.
             </p>
 
           </motion.div>
@@ -139,8 +139,8 @@ export default function Home() {
               alt="Dearborn Woods Site Plan"
             />
             <div className="absolute -top-8 -right-16 bg-surface-container-highest p-8 w-64 hidden lg:block rounded-xl shadow-xl">
-              <p className="font-headline italic text-xl">"Architecture is the art of how we waste space."</p>
-              <p className="font-label uppercase tracking-widest text-[10px] mt-4">— Philip Johnson</p>
+              <p className="font-headline italic text-xl">"Architecture should speak of its time and place, but yearn for timelessness."</p>
+              <p className="font-label uppercase tracking-widest text-[10px] mt-4">— Frank Gehry</p>
             </div>
           </motion.div>
         </div>
@@ -151,7 +151,7 @@ export default function Home() {
         <div className="max-w-screen-2xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
             {[
-              { icon: PencilRuler, title: 'Modern Design', desc: 'Clean lines and expansive glass that invites the outside in, redefining luxury for the 21st century.' },
+              { icon: PencilRuler, title: 'Modern Design', desc: 'Clean lines & intentional design, these homes embrace natural surroundings while redefining 21st-century luxury living.' },
               { icon: Trees, title: 'Natural Setting', desc: 'Integrated landscaping that preserves the mature woodlands and native flora of the region.' },
               { icon: MapPin, title: 'Prime Location', desc: "Secluded enough for absolute privacy, yet minutes from the city's finest dining and cultural hubs." },
               { icon: Hammer, title: 'Quality Craft', desc: 'Uncompromising standards in materials and construction, built to endure for generations.' },
@@ -196,14 +196,14 @@ export default function Home() {
       {/* River Birch Builders */}
       <section className="py-24 px-12 bg-surface-container-highest">
         <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row gap-24 items-center">
-          <div className="w-full md:w-1/2">
-            <img 
-              className="w-full aspect-[4/5] object-cover rounded-xl shadow-2xl" 
-              src="/outside-farmhouse.jpg"
-              alt="Farmhouse exterior"
+          <div className="w-full md:w-3/5">
+            <img
+              className="w-full aspect-[3/2] object-cover rounded-xl shadow-2xl"
+              src="/seacoastrephotography-33.jpg"
+              alt="River Birch Builders custom home"
             />
           </div>
-          <div className="w-full md:w-1/2">
+          <div className="w-full md:w-2/5">
             <span className="font-label uppercase tracking-[0.2em] text-xs text-primary mb-6 block">Craftsmanship</span>
             <h2 className="text-5xl font-light font-headline mb-8">River Birch Builders: Crafting Homes. Building Community</h2>
             <p className="text-stone-600 font-body text-lg leading-relaxed mb-12">
@@ -222,9 +222,12 @@ export default function Home() {
             Your New Home Awaits
           </h2>
           <div className="flex flex-col md:flex-row gap-8 justify-center items-center">
-            <button className="bg-white text-primary px-12 py-5 font-label uppercase tracking-[0.2em] text-xs hover:bg-stone-100 transition-colors rounded-xl">
+            <a
+              href="mailto:info@dearbornwoodsnh.com"
+              className="inline-block text-center bg-white text-primary px-12 py-5 font-label uppercase tracking-[0.2em] text-xs hover:bg-stone-100 transition-colors rounded-xl"
+            >
               Schedule a Tour
-            </button>
+            </a>
           </div>
         </div>
       </section>
