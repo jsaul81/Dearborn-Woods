@@ -26,10 +26,17 @@ export default function Footer() {
         </div>
 
         <div>
-          <h4 className="text-[#6FA08B] font-label uppercase tracking-[0.1em] text-xs mb-6">Legal</h4>
-          <div className="flex flex-col gap-4">
-            <Link to="#" className="text-stone-400 hover:text-white transition-opacity duration-300 font-body font-light text-sm">Privacy Policy</Link>
-            <Link to="#" className="text-stone-400 hover:text-white transition-opacity duration-300 font-body font-light text-sm">Terms of Service</Link>
+          <h4 className="text-[#6FA08B] font-label uppercase tracking-[0.1em] text-xs mb-6">Listed by</h4>
+          <div className="w-[65px] flex flex-col items-center">
+            <a
+              href="https://www.proulxrealestate.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block mb-5 opacity-90 hover:opacity-100 transition-opacity"
+            >
+              <img src="/proulx-logo.png" alt="Proulx Real Estate" className="h-14 w-auto max-w-none" />
+            </a>
+            <a className="text-stone-400 hover:text-white transition-colors duration-300 font-body font-light text-sm whitespace-nowrap" href="tel:6032051488">Office: 603-205-1488</a>
           </div>
         </div>
 
@@ -44,16 +51,11 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-white/5 py-5 px-8 flex flex-col md:flex-row justify-between items-center max-w-screen-2xl mx-auto gap-4">
-        <p className="text-stone-500 text-[10px] font-label uppercase tracking-widest">© 2024 Dearborn Woods. All rights reserved.</p>
-        <a
-          href="https://www.proulxrealestate.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-4 opacity-80 hover:opacity-100 transition-opacity"
-        >
-          <span className="text-stone-500 text-[10px] font-label uppercase tracking-widest">Listed by</span>
-          <img src="/proulx-logo.png" alt="Proulx Real Estate" className="h-7 w-auto" />
-        </a>
+        <p className="text-stone-500 text-[10px] font-label uppercase tracking-widest">© 2026 Dearborn Woods. All rights reserved.</p>
+        <div className="flex items-center gap-6">
+          <Link to="/privacy-policy" className="text-stone-500 text-[10px] font-label uppercase tracking-widest hover:text-white transition-colors">Privacy Policy</Link>
+          <Link to="/terms-of-service" className="text-stone-500 text-[10px] font-label uppercase tracking-widest hover:text-white transition-colors">Terms of Service</Link>
+        </div>
       </div>
     </footer>
   );

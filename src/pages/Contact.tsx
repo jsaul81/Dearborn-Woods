@@ -1,13 +1,33 @@
 import { motion } from 'motion/react';
-import { MapPin, Phone, Mail, ArrowRight, CheckCircle } from 'lucide-react';
+import { MapPin, Phone, Mail, ArrowRight, CheckCircle, AlertCircle } from 'lucide-react';
 import { useState, FormEvent } from 'react';
 
 export default function Contact() {
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    setStatus('submitting');
+    const formData = new FormData(e.currentTarget);
+    try {
+      const res = await fetch('/submit.php', {
+        method: 'POST',
+        body: formData,
+        headers: { Accept: 'application/json' },
+      });
+      if (res.ok) {
+        setStatus('success');
+        e.currentTarget.reset();
+      } else {
+        const data = await res.json().catch(() => ({}));
+        setErrorMessage(data.error || 'Something went wrong. Please email info@dearbornwoodsnh.com directly.');
+        setStatus('error');
+      }
+    } catch {
+      setErrorMessage('Network error. Please email info@dearbornwoodsnh.com directly.');
+      setStatus('error');
+    }
   };
 
   return (
@@ -21,45 +41,53 @@ export default function Contact() {
 
       <section className="px-6 md:px-12 max-w-screen-2xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-20 items-stretch">
         <div className="lg:col-span-7 bg-surface-container-low p-8 md:p-12 lg:p-20 rounded-xl shadow-sm">
-          {!submitted ? (
+          {status !== 'success' ? (
             <form className="space-y-12" onSubmit={handleSubmit}>
+              {/* Honeypot — humans don't see this; bots fill it and get silently dropped server-side. */}
+              <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div className="relative">
-                  <label className="block text-xs uppercase tracking-widest text-secondary mb-2 font-label">Full Name</label>
-                  <input className="w-full bg-transparent border-0 border-b border-outline-variant py-4 focus:ring-0 focus:border-primary placeholder-stone-300 transition-colors" placeholder="John Doe" type="text" required />
+                  <label className="block text-xs uppercase tracking-widest text-secondary mb-2 font-label" htmlFor="name">Full Name</label>
+                  <input id="name" name="name" className="w-full bg-transparent border-0 border-b border-outline-variant py-4 focus:ring-0 focus:border-primary placeholder-stone-300 transition-colors" placeholder="John Doe" type="text" required />
                 </div>
                 <div className="relative">
-                  <label className="block text-xs uppercase tracking-widest text-secondary mb-2 font-label">Email Address</label>
-                  <input className="w-full bg-transparent border-0 border-b border-outline-variant py-4 focus:ring-0 focus:border-primary placeholder-stone-300 transition-colors" placeholder="john@example.com" type="email" required />
+                  <label className="block text-xs uppercase tracking-widest text-secondary mb-2 font-label" htmlFor="email">Email Address</label>
+                  <input id="email" name="email" className="w-full bg-transparent border-0 border-b border-outline-variant py-4 focus:ring-0 focus:border-primary placeholder-stone-300 transition-colors" placeholder="john@example.com" type="email" required />
                 </div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div className="relative">
-                  <label className="block text-xs uppercase tracking-widest text-secondary mb-2 font-label">Phone Number</label>
-                  <input className="w-full bg-transparent border-0 border-b border-outline-variant py-4 focus:ring-0 focus:border-primary placeholder-stone-300 transition-colors" placeholder="+1 (555) 000-0000" type="tel" />
+                  <label className="block text-xs uppercase tracking-widest text-secondary mb-2 font-label" htmlFor="phone">Phone Number</label>
+                  <input id="phone" name="phone" className="w-full bg-transparent border-0 border-b border-outline-variant py-4 focus:ring-0 focus:border-primary placeholder-stone-300 transition-colors" placeholder="+1 (555) 000-0000" type="tel" />
                 </div>
                 <div className="relative">
-                  <label className="block text-xs uppercase tracking-widest text-secondary mb-2 font-label">Interest Level</label>
-                  <select className="w-full bg-transparent border-0 border-b border-outline-variant py-4 focus:ring-0 focus:border-primary appearance-none transition-colors">
+                  <label className="block text-xs uppercase tracking-widest text-secondary mb-2 font-label" htmlFor="interest">Interest Level</label>
+                  <select id="interest" name="interest" className="w-full bg-transparent border-0 border-b border-outline-variant py-4 focus:ring-0 focus:border-primary appearance-none transition-colors">
                     <option>General Inquiry</option>
                     <option>Ready to Purchase</option>
-                    <option>Looking for 2025</option>
+                    <option>Looking for 2026</option>
                   </select>
                 </div>
               </div>
               <div className="relative">
-                <label className="block text-xs uppercase tracking-widest text-secondary mb-2 font-label">Message</label>
-                <textarea className="w-full bg-transparent border-0 border-b border-outline-variant py-4 focus:ring-0 focus:border-primary placeholder-stone-300 transition-colors resize-none" placeholder="How can our curators assist you?" rows={4}></textarea>
+                <label className="block text-xs uppercase tracking-widest text-secondary mb-2 font-label" htmlFor="message">Message</label>
+                <textarea id="message" name="message" className="w-full bg-transparent border-0 border-b border-outline-variant py-4 focus:ring-0 focus:border-primary placeholder-stone-300 transition-colors resize-none" placeholder="How can we assist you?" rows={4}></textarea>
               </div>
+              {status === 'error' && (
+                <div className="flex items-start gap-3 p-4 bg-error-container/30 border-l-4 border-error rounded-lg">
+                  <AlertCircle className="w-5 h-5 text-error flex-shrink-0 mt-0.5" />
+                  <p className="text-sm text-on-surface">{errorMessage}</p>
+                </div>
+              )}
               <div>
-                <button className="group flex items-center gap-4 bg-primary text-on-primary px-12 py-5 uppercase tracking-widest text-sm hover:bg-primary-container transition-all rounded-xl" type="submit">
-                  Submit Inquiry
+                <button disabled={status === 'submitting'} className="group flex items-center gap-4 bg-primary text-on-primary px-12 py-5 uppercase tracking-widest text-sm hover:bg-primary-container transition-all rounded-xl disabled:opacity-60 disabled:cursor-not-allowed" type="submit">
+                  {status === 'submitting' ? 'Sending…' : 'Submit Inquiry'}
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
                 </button>
               </div>
             </form>
           ) : (
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               className="p-8 bg-surface-container-highest flex items-center gap-6 border-l-4 border-primary rounded-xl"
@@ -67,7 +95,7 @@ export default function Contact() {
               <CheckCircle className="w-10 h-10 text-primary" />
               <div>
                 <p className="font-headline text-2xl italic">Thank you for your interest.</p>
-                <p className="text-secondary text-sm">A legacy specialist will reach out to you within 24 hours.</p>
+                <p className="text-secondary text-sm">We&rsquo;ll reach out to you shortly.</p>
               </div>
             </motion.div>
           )}

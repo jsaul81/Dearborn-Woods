@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { Maximize2, ChevronLeft, ChevronRight, X } from 'lucide-react';
 
@@ -221,9 +222,9 @@ export default function FloorPlans() {
           <span className="font-label uppercase tracking-[0.2em] text-xs text-primary mb-6 block">Custom Solutions</span>
           <h2 className="text-5xl md:text-6xl font-light mb-8 max-w-2xl italic font-headline">Can't find the perfect fit?</h2>
           <p className="text-secondary max-w-xl mb-12 font-light leading-relaxed">Our architectural team offers limited custom modifications to any of our base floor plans to ensure your vision is realized without compromise.</p>
-          <a className="text-primary border-b border-primary pb-1 font-label uppercase tracking-[0.1em] text-sm hover:opacity-70 transition-opacity" href="#">
+          <Link className="text-primary border-b border-primary pb-1 font-label uppercase tracking-[0.1em] text-sm hover:opacity-70 transition-opacity" to="/contact">
             Contact Us Today
-          </a>
+          </Link>
         </div>
       </motion.section>
     </main>

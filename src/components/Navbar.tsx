@@ -52,10 +52,8 @@ export default function Navbar() {
         }`}>
           <Link to="/">
             <img src="/logo.png" alt="Dearborn Woods" className={`transition-all duration-500 ${
-              scrolled
-                ? 'h-10 invert'
-                : (forceBlack ? 'h-18 invert' : 'h-18 dark:invert')
-            }`} />
+              scrolled ? 'h-10' : 'h-18'
+            } ${(scrolled || forceBlack) ? 'invert' : ''}`} />
           </Link>
 
           <div className="hidden md:flex gap-12 items-center">

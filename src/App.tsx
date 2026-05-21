@@ -13,6 +13,8 @@ import SitePlan from './pages/SitePlan';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Gallery from './pages/Gallery';
+import Privacy from './pages/Privacy';
+import Terms from './pages/Terms';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -36,6 +38,8 @@ export default function App() {
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/privacy-policy" element={<Privacy />} />
+            <Route path="/terms-of-service" element={<Terms />} />
           </Routes>
         </div>
         <Footer />
