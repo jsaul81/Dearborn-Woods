@@ -7,10 +7,12 @@ export default function About() {
       <header className="pt-40 pb-16 px-6 md:px-12 max-w-screen-2xl mx-auto">
         <div className="max-w-4xl">
           <p className="font-label text-xs uppercase tracking-[0.2em] text-primary mb-6">About the Builder</p>
-          <h1 className="font-headline italic font-light text-4xl md:text-6xl leading-tight text-on-surface">
-            River Birch Builders
-          </h1>
-          <p className="font-headline italic text-xl md:text-2xl text-secondary mt-4">
+          <img
+            src="/riverbirch-logo.png"
+            alt="River Birch Builders"
+            className="h-20 md:h-28 w-auto -ml-2"
+          />
+          <p className="font-headline italic text-xl md:text-2xl text-secondary mt-6">
             Crafting Homes. Building Community.
           </p>
         </div>
@@ -39,38 +41,20 @@ export default function About() {
             <p className="font-body text-lg text-secondary leading-relaxed mb-6">
               With a team of seasoned master builders and artisans, we bring decades of construction expertise to every project, constantly striving to surpass expectations.
             </p>
-            <p className="font-body text-lg text-secondary leading-relaxed">
+            <p className="font-body text-lg text-secondary leading-relaxed mb-8">
               Our mission? Delivering impeccable craftsmanship and nurturing the connections that transform houses into homes.
             </p>
-          </div>
-        </div>
-      </motion.section>
-
-      {/* About Proulx Real Estate */}
-      <motion.section
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        className="px-6 md:px-12 py-24 max-w-screen-2xl mx-auto"
-      >
-        <div className="mb-16 max-w-4xl">
-          <p className="font-label text-xs uppercase tracking-[0.2em] text-primary mb-6">About the Brokerage</p>
-          <h2 className="font-headline italic font-light text-5xl md:text-7xl leading-[1.05] text-on-surface">
-            Proulx Real Estate
-          </h2>
-        </div>
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
-          <div className="lg:col-span-7 lg:pt-2">
-            <p className="font-body text-lg text-secondary leading-relaxed">
-              At Proulx Real Estate our top priority is providing an exceptional experience for our clients. We take a personal, creative approach to real estate knowing that every client has their own individual needs, and every home has its distinctive character. All of our agents live within the Seacoast community and we're consistently in the top 1% of agents in the NH Seacoast. With 1,000+ lifetime sales, we have both vast industry and local knowledge.
-            </p>
-          </div>
-          <div className="lg:col-span-5 lg:pl-12 lg:border-l border-outline-variant/40">
-            <p className="font-headline italic font-light text-3xl md:text-4xl leading-[1.2] text-primary">
-              &ldquo;Real estate is a fascinating mix of art and science that we strive to master for each and every one of our clients.&rdquo;
-            </p>
-            <p className="font-label text-[10px] uppercase tracking-[0.25em] text-secondary mt-8">— Proulx Real Estate</p>
+            <div className="border-t border-outline-variant/40 pt-6 space-y-3">
+              <a href="tel:6034188644" className="block font-body text-sm text-secondary hover:text-primary transition-colors">
+                603-418-8644
+              </a>
+              <a href="mailto:office@riverbirchbuilders.com" className="block font-body text-sm text-secondary hover:text-primary transition-colors">
+                office@riverbirchbuilders.com
+              </a>
+              <a href="https://riverbirchbuilders.com" target="_blank" rel="noopener noreferrer" className="block font-body text-sm text-secondary hover:text-primary transition-colors">
+                riverbirchbuilders.com
+              </a>
+            </div>
           </div>
         </div>
       </motion.section>
@@ -84,8 +68,8 @@ export default function About() {
         className="bg-surface-container-low py-20"
       >
         <div className="max-w-screen-2xl mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <div>
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-center">
+            <div className="md:col-span-7">
               <p className="font-label text-xs uppercase tracking-[0.2em] text-primary mb-4">Our Process</p>
               <h2 className="font-headline text-3xl italic mb-8">Built With Intention</h2>
               <div className="space-y-6">
@@ -105,13 +89,55 @@ export default function About() {
                 ))}
               </div>
             </div>
-            <div>
+            <div className="md:col-span-5">
               <img
-                className="w-full aspect-[4/5] object-cover rounded-xl shadow-2xl"
+                className="w-full max-w-xs md:max-w-sm mx-auto aspect-[3/4] object-cover rounded-xl shadow-2xl"
                 src="/process-section.jpg"
                 alt="River Birch Builders Process"
               />
             </div>
+          </div>
+        </div>
+      </motion.section>
+
+      {/* About Proulx Real Estate */}
+      <motion.section
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="px-6 md:px-12 py-24 max-w-screen-2xl mx-auto"
+      >
+        <div className="mb-16 max-w-4xl">
+          <p className="font-label text-xs uppercase tracking-[0.2em] text-primary mb-6">About the Brokerage</p>
+          <img
+            src="/proulx-logo-dark.png"
+            alt="Proulx Real Estate"
+            className="h-16 md:h-20 w-auto -ml-1"
+          />
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
+          <div className="lg:col-span-7 lg:pt-2">
+            <p className="font-body text-lg text-secondary leading-relaxed mb-8">
+              At Proulx Real Estate our top priority is providing an exceptional experience for our clients. We take a personal, creative approach to real estate knowing that every client has their own individual needs, and every home has its distinctive character. All of our agents live within the Seacoast community and we're consistently in the top 1% of agents in the NH Seacoast. With 1,000+ lifetime sales, we have both vast industry and local knowledge.
+            </p>
+            <div className="border-t border-outline-variant/40 pt-6 space-y-3">
+              <a href="tel:6032051488" className="block font-body text-sm text-secondary hover:text-primary transition-colors">
+                603-205-1488
+              </a>
+              <p className="font-body text-sm text-secondary">
+                118 Pleasant Street, Portsmouth, NH 03801
+              </p>
+              <a href="https://www.proulxrealestate.com" target="_blank" rel="noopener noreferrer" className="block font-body text-sm text-secondary hover:text-primary transition-colors">
+                proulxrealestate.com
+              </a>
+            </div>
+          </div>
+          <div className="lg:col-span-5 lg:pl-12 lg:border-l border-outline-variant/40">
+            <p className="font-headline italic font-light text-3xl md:text-4xl leading-[1.2] text-primary">
+              &ldquo;Real estate is a fascinating mix of art and science that we strive to master for each and every one of our clients.&rdquo;
+            </p>
+            <p className="font-label text-[10px] uppercase tracking-[0.25em] text-secondary mt-8">— Proulx Real Estate</p>
           </div>
         </div>
       </motion.section>
