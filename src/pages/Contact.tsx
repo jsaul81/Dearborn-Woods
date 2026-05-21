@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
-import { MapPin, Phone, Mail, ArrowRight, CheckCircle, AlertCircle } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { MapPin, Phone, Mail, ArrowRight, ArrowUpRight, AlertCircle } from 'lucide-react';
 import { useState, FormEvent } from 'react';
 
 export default function Contact() {
@@ -92,15 +93,150 @@ export default function Contact() {
             </form>
           ) : (
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="p-8 bg-surface-container-highest flex items-center gap-6 border-l-4 border-primary rounded-xl"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              className="h-full flex flex-col"
             >
-              <CheckCircle className="w-10 h-10 text-primary" />
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
+                className="font-label text-xs uppercase tracking-[0.25em] text-primary mb-10"
+              >
+                Inquiry Received
+              </motion.p>
+
+              <motion.svg
+                width="56"
+                height="56"
+                viewBox="0 0 56 56"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.4, delay: 0.25 }}
+                className="mb-10"
+                aria-hidden="true"
+              >
+                <motion.circle
+                  cx="28"
+                  cy="28"
+                  r="26"
+                  stroke="currentColor"
+                  strokeWidth="1.25"
+                  fill="none"
+                  className="text-primary/40"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 1.1, delay: 0.3, ease: 'easeOut' }}
+                />
+                <motion.path
+                  d="M 16 28 L 25 37 L 42 19"
+                  stroke="currentColor"
+                  strokeWidth="1.75"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="text-primary"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 0.7, delay: 0.85, ease: 'easeOut' }}
+                />
+              </motion.svg>
+
+              <motion.h2
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.4, ease: 'easeOut' }}
+                className="font-headline italic font-light text-4xl md:text-6xl text-on-surface leading-[1.05] tracking-tight mb-10"
+              >
+                We&rsquo;ll be in <br className="hidden md:block" />touch soon.
+              </motion.h2>
+
+              <motion.p
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.6, ease: 'easeOut' }}
+                className="font-body text-lg text-secondary leading-relaxed max-w-md"
+              >
+                Thank you for reaching out. A member of the Dearborn Woods team will be in touch within one business day to start the conversation about your new home.
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1, delay: 0.9 }}
+                className="my-16 flex items-center gap-6"
+                aria-hidden="true"
+              >
+                <motion.div
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ duration: 1, delay: 0.9, ease: 'easeOut' }}
+                  className="h-px bg-outline-variant/60 flex-1 origin-left"
+                />
+                <span className="font-label text-[10px] uppercase tracking-[0.4em] text-primary/60 whitespace-nowrap">
+                  Greenland, NH
+                </span>
+                <motion.div
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ duration: 1, delay: 0.9, ease: 'easeOut' }}
+                  className="h-px bg-outline-variant/60 flex-1 origin-right"
+                />
+              </motion.div>
+
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 1.1, ease: 'easeOut' }}
+                className="font-label text-xs uppercase tracking-[0.25em] text-primary mb-6"
+              >
+                Continue Exploring
+              </motion.p>
+
               <div>
-                <p className="font-headline text-2xl italic">Thank you for your interest.</p>
-                <p className="text-secondary text-sm">We&rsquo;ll reach out to you shortly.</p>
+                {[
+                  { num: '01', title: 'Floor Plans', desc: 'Three signature designs, each tailored to the New England landscape.', to: '/floor-plans' },
+                  { num: '02', title: 'Site Plan', desc: 'Thirteen thoughtfully positioned lots across forested terrain.', to: '/site-plan' },
+                  { num: '03', title: 'Gallery', desc: 'A look inside homes River Birch Builders has already brought to life.', to: '/gallery' },
+                ].map((step, i) => (
+                  <motion.div
+                    key={step.num}
+                    initial={{ opacity: 0, y: 14 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 1.25 + i * 0.12, ease: 'easeOut' }}
+                  >
+                    <Link
+                      to={step.to}
+                      className="group flex items-start gap-6 py-7 border-t border-outline-variant/40 transition-colors"
+                    >
+                      <span className="font-headline italic text-2xl text-primary/40 group-hover:text-primary mt-1 w-10 flex-shrink-0 transition-colors">
+                        {step.num}
+                      </span>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-headline italic text-2xl mb-2 group-hover:text-primary transition-colors">
+                          {step.title}
+                        </h3>
+                        <p className="font-body text-sm text-secondary leading-relaxed">{step.desc}</p>
+                      </div>
+                      <ArrowUpRight
+                        className="w-5 h-5 text-secondary/60 group-hover:text-primary group-hover:-translate-y-1 group-hover:translate-x-1 transition-all mt-3 flex-shrink-0"
+                        strokeWidth={1.5}
+                      />
+                    </Link>
+                  </motion.div>
+                ))}
+                <div className="border-t border-outline-variant/40" aria-hidden="true" />
               </div>
+
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 1.7, ease: 'easeOut' }}
+                className="font-headline italic text-base text-secondary mt-12"
+              >
+                &mdash; The Dearborn Woods Team
+              </motion.p>
             </motion.div>
           )}
         </div>
