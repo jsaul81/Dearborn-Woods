@@ -28,8 +28,8 @@ export default function About() {
           <div>
             <img
               className="w-full aspect-[4/3] object-cover rounded-xl shadow-2xl"
-              src="/team-photo.jpg"
-              alt="River Birch Builders Team"
+              src="/team-photo-2.jpg"
+              alt="River Birch Builders at Work"
             />
           </div>
           <div>
@@ -46,37 +46,31 @@ export default function About() {
         </div>
       </motion.section>
 
-      {/* Team Photo 2 */}
+      {/* About Proulx Real Estate */}
       <motion.section
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="px-6 md:px-12 pb-20 max-w-screen-2xl mx-auto"
+        className="px-6 md:px-12 py-24 max-w-screen-2xl mx-auto"
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          <div className="order-2 md:order-1">
-            <h2 className="font-headline text-3xl italic mb-6">A Team You Can Trust</h2>
-            <p className="font-body text-lg text-secondary leading-relaxed mb-6">
-              Every member of our team shares a passion for building homes that stand the test of time. From initial design consultation through final walkthrough, we're with you every step of the way.
+        <div className="mb-16 max-w-4xl">
+          <p className="font-label text-xs uppercase tracking-[0.2em] text-primary mb-6">About the Brokerage</p>
+          <h2 className="font-headline italic font-light text-5xl md:text-7xl leading-[1.05] text-on-surface">
+            Proulx Real Estate
+          </h2>
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
+          <div className="lg:col-span-7 lg:pt-2">
+            <p className="font-body text-lg text-secondary leading-relaxed">
+              At Proulx Real Estate our top priority is providing an exceptional experience for our clients. We take a personal, creative approach to real estate knowing that every client has their own individual needs, and every home has its distinctive character. All of our agents live within the Seacoast community and we're consistently in the top 1% of agents in the NH Seacoast. With 1,000+ lifetime sales, we have both vast industry and local knowledge.
             </p>
-            <div className="grid grid-cols-2 gap-8 pt-6 border-t border-outline-variant/30">
-              <div>
-                <p className="font-headline text-3xl italic text-primary">30+</p>
-                <p className="font-label text-[10px] uppercase tracking-widest text-secondary">Years Combined Experience</p>
-              </div>
-              <div>
-                <p className="font-headline text-3xl italic text-primary">100%</p>
-                <p className="font-label text-[10px] uppercase tracking-widest text-secondary">Client Satisfaction</p>
-              </div>
-            </div>
           </div>
-          <div className="order-1 md:order-2">
-            <img
-              className="w-full aspect-[4/3] object-cover rounded-xl shadow-2xl"
-              src="/team-photo-2.jpg"
-              alt="River Birch Builders at Work"
-            />
+          <div className="lg:col-span-5 lg:pl-12 lg:border-l border-outline-variant/40">
+            <p className="font-headline italic font-light text-3xl md:text-4xl leading-[1.2] text-primary">
+              &ldquo;Real estate is a fascinating mix of art and science that we strive to master for each and every one of our clients.&rdquo;
+            </p>
+            <p className="font-label text-[10px] uppercase tracking-[0.25em] text-secondary mt-8">— Proulx Real Estate</p>
           </div>
         </div>
       </motion.section>
@@ -137,8 +131,8 @@ export default function About() {
             <a href="mailto:office@riverbirchbuilders.com" className="bg-on-primary text-primary px-10 py-4 text-sm uppercase tracking-[0.2em] font-label hover:bg-surface-container transition-all rounded-xl">
               Email Us
             </a>
-            <a href="tel:6034188644" className="border border-on-primary text-on-primary px-10 py-4 text-sm uppercase tracking-[0.2em] font-label hover:bg-on-primary hover:text-primary transition-all rounded-xl">
-              Call 603-418-8644
+            <a href="tel:6032054463" className="border border-on-primary text-on-primary px-10 py-4 text-sm uppercase tracking-[0.2em] font-label hover:bg-on-primary hover:text-primary transition-all rounded-xl">
+              Call 603-205-4463
             </a>
           </div>
           <p className="font-body text-sm opacity-60">1039 Islington St STE 11, Portsmouth NH 03801</p>

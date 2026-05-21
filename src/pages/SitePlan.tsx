@@ -24,7 +24,7 @@ export default function SitePlan() {
   const [expandedLot, setExpandedLot] = useState<string | null>(null);
 
   const lots = [
-    { id: '1', size: '1.42 Acres', status: 'Under Contract', terrain: 'Wooded, Gentle Slope', frontage: '120 ft', setback: '50 ft', utilities: 'Public Water, Septic', notes: 'Private cul-de-sac location with mature oak canopy.' },
+    { id: '1', size: '1.42 Acres', status: 'Sold', terrain: 'Wooded, Gentle Slope', frontage: '120 ft', setback: '50 ft', utilities: 'Public Water, Septic', notes: 'Private cul-de-sac location with mature oak canopy.' },
     { id: '2', size: '2.62 Acres', status: 'Available', terrain: 'Wooded, Level', frontage: '180 ft', setback: '50 ft', utilities: 'Public Water, Septic', notes: 'Largest lot in the development. Corner position with maximum privacy.' },
     { id: '3', size: '1.44 Acres', status: 'Available', terrain: 'Partially Wooded, Level', frontage: '130 ft', setback: '50 ft', utilities: 'Public Water, Septic', notes: 'South-facing exposure ideal for natural light.' },
     { id: '4', size: '2.07 Acres', status: 'Under Contract', terrain: 'Wooded, Level', frontage: '160 ft', setback: '50 ft', utilities: 'Public Water, Septic', notes: 'Central lot with views of surrounding woodlands.' },
@@ -41,13 +41,13 @@ export default function SitePlan() {
 
   const getLotColor = (status: string) => {
     if (status === 'Available') return 'rgba(45, 93, 91, 0.35)';
-    if (status === 'Sold') return 'rgba(120, 130, 140, 0.35)';
+    if (status === 'Sold') return 'rgba(60, 110, 175, 0.35)';
     return 'rgba(200, 170, 50, 0.35)';
   };
 
   const getLotHighlight = (status: string) => {
     if (status === 'Available') return 'rgba(45, 93, 91, 0.6)';
-    if (status === 'Sold') return 'rgba(120, 130, 140, 0.6)';
+    if (status === 'Sold') return 'rgba(60, 110, 175, 0.6)';
     return 'rgba(200, 170, 50, 0.6)';
   };
 
@@ -196,12 +196,12 @@ export default function SitePlan() {
           <h2 className="text-5xl md:text-7xl font-headline italic mb-8">Ready to Walk the Grounds?</h2>
           <p className="text-secondary mb-12 text-lg">Schedule a private guided tour of the available lots with our development specialists.</p>
           <div className="flex flex-col md:flex-row justify-center gap-6">
-            <button className="bg-primary text-on-primary px-12 py-5 font-label uppercase tracking-widest text-xs hover:bg-primary-container transition-colors rounded-xl">
+            <a
+              href="mailto:info@dearbornwoodsnh.com"
+              className="inline-block text-center bg-primary text-on-primary px-12 py-5 font-label uppercase tracking-widest text-xs hover:bg-primary-container transition-colors rounded-xl"
+            >
               Book a Site Visit
-            </button>
-            <button className="border border-outline-variant text-secondary px-12 py-5 font-label uppercase tracking-widest text-xs hover:bg-surface-container transition-colors rounded-xl">
-              Download Site Brochure
-            </button>
+            </a>
           </div>
         </div>
       </section>

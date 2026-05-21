@@ -82,21 +82,21 @@ export default function Contact() {
                   <MapPin className="w-6 h-6 text-primary mt-1" />
                   <div>
                     <p className="text-xs uppercase tracking-widest text-secondary mb-1">Address</p>
-                    <p className="text-lg">1400 Dearborn Woods Dr.<br />Aspen Oaks, MI 48124</p>
+                    <p className="text-lg">Wentworth Drive<br />Greenland, NH 03840</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
                   <Phone className="w-6 h-6 text-primary mt-1" />
                   <div>
                     <p className="text-xs uppercase tracking-widest text-secondary mb-1">Phone</p>
-                    <p className="text-lg">800.555.WOOD</p>
+                    <a href="tel:6032054463" className="text-lg hover:text-primary transition-colors">603-205-4463</a>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
                   <Mail className="w-6 h-6 text-primary mt-1" />
                   <div>
                     <p className="text-xs uppercase tracking-widest text-secondary mb-1">Email</p>
-                    <p className="text-lg underline underline-offset-4 decoration-outline-variant">hello@dearborn.com</p>
+                    <a href="mailto:info@dearbornwoodsnh.com" className="text-lg underline underline-offset-4 decoration-outline-variant hover:text-primary hover:decoration-primary transition-colors">info@dearbornwoodsnh.com</a>
                   </div>
                 </div>
               </div>
