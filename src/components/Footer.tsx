@@ -34,9 +34,9 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="inline-block mb-5 opacity-90 hover:opacity-100 transition-opacity"
             >
-              <img src="/proulx-logo.png" alt="Proulx Real Estate" className="h-10 w-auto max-w-none" />
+              <img src="/proulx-logo.png" alt="Proulx Real Estate" className="h-14 w-auto max-w-none" />
             </a>
-            <a className="text-stone-400 hover:text-white transition-colors duration-300 font-body font-light text-sm whitespace-nowrap" href="tel:6032051488">603-205-1488</a>
+            <a className="text-stone-400 hover:text-white transition-colors duration-300 font-body font-light text-sm whitespace-nowrap" href="tel:6032051488">Office: 603-205-1488</a>
           </div>
         </div>
 
