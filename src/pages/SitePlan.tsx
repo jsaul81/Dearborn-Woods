@@ -24,19 +24,19 @@ export default function SitePlan() {
   const [expandedLot, setExpandedLot] = useState<string | null>(null);
 
   const lots = [
-    { id: '1', size: '1.42 Acres', status: 'Sold', terrain: 'Wooded, Gentle Slope', frontage: '120 ft', setback: '50 ft', utilities: 'Public Water, Septic', notes: 'Private cul-de-sac location with mature oak canopy.' },
-    { id: '2', size: '2.62 Acres', status: 'Available', terrain: 'Wooded, Level', frontage: '180 ft', setback: '50 ft', utilities: 'Public Water, Septic', notes: 'Largest lot in the development. Corner position with maximum privacy.' },
-    { id: '3', size: '1.44 Acres', status: 'Available', terrain: 'Partially Wooded, Level', frontage: '130 ft', setback: '50 ft', utilities: 'Public Water, Septic', notes: 'South-facing exposure ideal for natural light.' },
-    { id: '4', size: '2.07 Acres', status: 'Under Contract', terrain: 'Wooded, Level', frontage: '160 ft', setback: '50 ft', utilities: 'Public Water, Septic', notes: 'Central lot with views of surrounding woodlands.' },
-    { id: '5', size: '1.99 Acres', status: 'Available', terrain: 'Wooded, Gentle Slope', frontage: '150 ft', setback: '50 ft', utilities: 'Public Water, Septic', notes: 'Elevated position with potential for distant views.' },
-    { id: '6', size: '1.93 Acres', status: 'Available', terrain: 'Wooded, Level', frontage: '140 ft', setback: '50 ft', utilities: 'Public Water, Septic', notes: 'Borders conservation land to the west.' },
-    { id: '7', size: '1.33 Acres', status: 'Available', terrain: 'Partially Wooded, Level', frontage: '110 ft', setback: '50 ft', utilities: 'Public Water, Septic', notes: 'Quiet interior lot with established tree line.' },
-    { id: '8', size: '1.36 Acres', status: 'Available', terrain: 'Wooded, Level', frontage: '115 ft', setback: '50 ft', utilities: 'Public Water, Septic', notes: 'Adjacent to community green space.' },
-    { id: '9', size: '1.39 Acres', status: 'Available', terrain: 'Partially Wooded, Gentle Slope', frontage: '120 ft', setback: '50 ft', utilities: 'Public Water, Septic', notes: 'Corner lot with dual road access potential.' },
-    { id: '10', size: '1.43 Acres', status: 'Available', terrain: 'Wooded, Level', frontage: '125 ft', setback: '50 ft', utilities: 'Public Water, Septic', notes: 'Backs to mature forest preserve.' },
-    { id: '11', size: '1.46 Acres', status: 'Available', terrain: 'Partially Wooded, Level', frontage: '130 ft', setback: '50 ft', utilities: 'Public Water, Septic', notes: 'Open meadow with perimeter tree line.' },
-    { id: '12', size: '1.44 Acres', status: 'Sold', terrain: 'Wooded, Level', frontage: '125 ft', setback: '50 ft', utilities: 'Public Water, Septic', notes: 'Premium end-of-road location.' },
-    { id: '13', size: '1.48 Acres', status: 'Sold', terrain: 'Wooded, Gentle Slope', frontage: '128 ft', setback: '50 ft', utilities: 'Public Water, Septic', notes: 'Southern exposure with natural drainage.' },
+    { id: '1', size: '1.42 Acres', status: 'Sold', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'Private cul-de-sac location with mature oak canopy.' },
+    { id: '2', size: '2.62 Acres', status: 'Available', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'Largest lot in the development. Corner position with maximum privacy.' },
+    { id: '3', size: '1.44 Acres', status: 'Available', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'South-facing exposure ideal for natural light.' },
+    { id: '4', size: '2.07 Acres', status: 'Under Contract', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'Central lot with views of surrounding woodlands.' },
+    { id: '5', size: '1.99 Acres', status: 'Available', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'Elevated position with potential for distant views.' },
+    { id: '6', size: '1.93 Acres', status: 'Available', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'Borders conservation land to the west.' },
+    { id: '7', size: '1.33 Acres', status: 'Available', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'Quiet interior lot with established tree line.' },
+    { id: '8', size: '1.36 Acres', status: 'Available', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'Adjacent to community green space.' },
+    { id: '9', size: '1.39 Acres', status: 'Available', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'Corner lot with dual road access potential.' },
+    { id: '10', size: '1.43 Acres', status: 'Available', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'Backs to mature forest preserve.' },
+    { id: '11', size: '1.46 Acres', status: 'Available', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'Open meadow with perimeter tree line.' },
+    { id: '12', size: '1.44 Acres', status: 'Sold', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'Premium end-of-road location.' },
+    { id: '13', size: '1.48 Acres', status: 'Sold', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'Southern exposure with natural drainage.' },
   ];
 
   const getLotColor = (status: string) => {
