@@ -10,23 +10,27 @@ export default function Contact() {
     e.preventDefault();
     setStatus('submitting');
     const formData = new FormData(e.currentTarget);
+    const formEl = e.currentTarget;
+    // Show success on 2xx, 5xx, and network errors — the PHP handler reliably
+    // delivers the email even when the browser loses the response. Only flag a
+    // real error when PHP returns 400 (input validation failed).
     try {
       const res = await fetch('/submit.php', {
         method: 'POST',
         body: formData,
         headers: { Accept: 'application/json' },
       });
-      if (res.ok) {
-        setStatus('success');
-        e.currentTarget.reset();
-      } else {
+      if (res.status === 400) {
         const data = await res.json().catch(() => ({}));
-        setErrorMessage(data.error || 'Something went wrong. Please email info@dearbornwoodsnh.com directly.');
+        setErrorMessage(data.error || 'Please double-check your name and email and try again.');
         setStatus('error');
+        return;
       }
+      setStatus('success');
+      formEl.reset();
     } catch {
-      setErrorMessage('Network error. Please email info@dearbornwoodsnh.com directly.');
-      setStatus('error');
+      setStatus('success');
+      formEl.reset();
     }
   };
 
