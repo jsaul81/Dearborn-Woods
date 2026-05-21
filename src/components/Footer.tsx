@@ -51,7 +51,7 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-white/5 py-5 px-8 flex flex-col md:flex-row justify-between items-center max-w-screen-2xl mx-auto gap-4">
-        <p className="text-stone-500 text-[10px] font-label uppercase tracking-widest">© 2024 Dearborn Woods. All rights reserved.</p>
+        <p className="text-stone-500 text-[10px] font-label uppercase tracking-widest">© 2026 Dearborn Woods. All rights reserved.</p>
         <div className="flex items-center gap-6">
           <Link to="/privacy-policy" className="text-stone-500 text-[10px] font-label uppercase tracking-widest hover:text-white transition-colors">Privacy Policy</Link>
           <Link to="/terms-of-service" className="text-stone-500 text-[10px] font-label uppercase tracking-widest hover:text-white transition-colors">Terms of Service</Link>
