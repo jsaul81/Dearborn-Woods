@@ -16,6 +16,7 @@ export default function Navbar() {
     { name: 'Home', path: '/' },
     { name: 'Floor Plans', path: '/floor-plans' },
     { name: 'Site Plan', path: '/site-plan' },
+    { name: 'Gallery', path: '/gallery' },
     { name: 'About', path: '/about' },
     { name: 'Contact', path: '/contact' },
   ];

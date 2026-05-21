@@ -12,6 +12,7 @@ import FloorPlans from './pages/FloorPlans';
 import SitePlan from './pages/SitePlan';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import Gallery from './pages/Gallery';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -32,6 +33,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/floor-plans" element={<FloorPlans />} />
             <Route path="/site-plan" element={<SitePlan />} />
+            <Route path="/gallery" element={<Gallery />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
