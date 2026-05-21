@@ -27,12 +27,12 @@ export default function Footer() {
 
         <div>
           <h4 className="text-[#6FA08B] font-label uppercase tracking-[0.1em] text-xs mb-6">Listed by</h4>
-          <div className="w-[65px] flex flex-col items-center">
+          <div className="flex flex-col items-start md:items-center md:w-[65px]">
             <a
               href="https://www.proulxrealestate.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block mb-5 opacity-90 hover:opacity-100 transition-opacity"
+              className="inline-block mb-5 -ml-3 md:ml-0 opacity-90 hover:opacity-100 transition-opacity"
             >
               <img src="/proulx-logo.png" alt="Proulx Real Estate" className="h-14 w-auto max-w-none" />
             </a>

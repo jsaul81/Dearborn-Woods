@@ -121,6 +121,12 @@ export default function About() {
             <p className="font-body text-lg text-secondary leading-relaxed mb-8">
               At Proulx Real Estate our top priority is providing an exceptional experience for our clients. We take a personal, creative approach to real estate knowing that every client has their own individual needs, and every home has its distinctive character. All of our agents live within the Seacoast community and we're consistently in the top 1% of agents in the NH Seacoast. With 1,000+ lifetime sales, we have both vast industry and local knowledge.
             </p>
+            <div className="lg:hidden mb-8">
+              <p className="font-headline italic font-light text-3xl md:text-4xl leading-[1.2] text-primary">
+                &ldquo;Real estate is a fascinating mix of art and science that we strive to master for each and every one of our clients.&rdquo;
+              </p>
+              <p className="font-label text-[10px] uppercase tracking-[0.25em] text-secondary mt-8">— Proulx Real Estate</p>
+            </div>
             <div className="border-t border-outline-variant/40 pt-6 space-y-3">
               <a href="tel:6032051488" className="block font-body text-sm text-secondary hover:text-primary transition-colors">
                 603-205-1488
@@ -133,7 +139,7 @@ export default function About() {
               </a>
             </div>
           </div>
-          <div className="lg:col-span-5 lg:pl-12 lg:border-l border-outline-variant/40">
+          <div className="hidden lg:block lg:col-span-5 lg:pl-12 lg:border-l border-outline-variant/40">
             <p className="font-headline italic font-light text-3xl md:text-4xl leading-[1.2] text-primary">
               &ldquo;Real estate is a fascinating mix of art and science that we strive to master for each and every one of our clients.&rdquo;
             </p>

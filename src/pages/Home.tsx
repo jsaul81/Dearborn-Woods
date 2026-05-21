@@ -30,7 +30,7 @@ function DesignCarousel() {
             >
               <div className="aspect-[16/10] overflow-hidden bg-surface-container-high mb-8 relative rounded-xl">
                 <img
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+                  className="w-full h-full object-cover md:grayscale md:group-hover:grayscale-0 md:group-hover:scale-105 transition-all duration-700"
                   src={plan.img}
                   alt={plan.title}
                 />
