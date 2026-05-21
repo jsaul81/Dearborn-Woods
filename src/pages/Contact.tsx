@@ -2,23 +2,16 @@ import { motion } from 'motion/react';
 import { MapPin, Phone, Mail, ArrowRight, CheckCircle, AlertCircle } from 'lucide-react';
 import { useState, FormEvent } from 'react';
 
-const FORMSPREE_ENDPOINT = import.meta.env.VITE_FORMSPREE_ENDPOINT as string | undefined;
-
 export default function Contact() {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!FORMSPREE_ENDPOINT) {
-      setErrorMessage('Form is not configured yet. Please email info@dearbornwoodsnh.com directly.');
-      setStatus('error');
-      return;
-    }
     setStatus('submitting');
     const formData = new FormData(e.currentTarget);
     try {
-      const res = await fetch(FORMSPREE_ENDPOINT, {
+      const res = await fetch('/submit.php', {
         method: 'POST',
         body: formData,
         headers: { Accept: 'application/json' },
@@ -28,11 +21,11 @@ export default function Contact() {
         e.currentTarget.reset();
       } else {
         const data = await res.json().catch(() => ({}));
-        setErrorMessage(data.error || 'Something went wrong. Please try again or email us directly.');
+        setErrorMessage(data.error || 'Something went wrong. Please email info@dearbornwoodsnh.com directly.');
         setStatus('error');
       }
     } catch {
-      setErrorMessage('Network error. Please try again or email us directly.');
+      setErrorMessage('Network error. Please email info@dearbornwoodsnh.com directly.');
       setStatus('error');
     }
   };
@@ -50,6 +43,8 @@ export default function Contact() {
         <div className="lg:col-span-7 bg-surface-container-low p-8 md:p-12 lg:p-20 rounded-xl shadow-sm">
           {status !== 'success' ? (
             <form className="space-y-12" onSubmit={handleSubmit}>
+              {/* Honeypot — humans don't see this; bots fill it and get silently dropped server-side. */}
+              <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div className="relative">
                   <label className="block text-xs uppercase tracking-widest text-secondary mb-2 font-label" htmlFor="name">Full Name</label>
