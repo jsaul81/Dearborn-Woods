@@ -76,14 +76,14 @@ export default function Navbar() {
             ))}
           </div>
 
-          <a
-            href="mailto:info@dearbornwoodsnh.com"
+          <Link
+            to="/contact"
             className={`hidden md:inline-block text-center bg-primary hover:bg-primary-container text-on-primary px-6 transition-all duration-500 active:scale-95 font-label uppercase tracking-[0.1em] text-xs rounded-xl ${
               scrolled ? 'py-2' : 'py-3'
             }`}
           >
             Request a Viewing
-          </a>
+          </Link>
 
           <button
             type="button"
@@ -150,13 +150,13 @@ export default function Navbar() {
               transition={{ duration: 0.4, delay: 0.45, ease: 'easeOut' }}
               className="px-6 pb-12"
             >
-              <a
-                href="mailto:info@dearbornwoodsnh.com"
+              <Link
+                to="/contact"
                 onClick={() => setMobileOpen(false)}
                 className="block text-center bg-white text-primary px-8 py-5 font-label uppercase tracking-[0.2em] text-xs hover:bg-stone-100 transition-colors rounded-xl"
               >
                 Request a Viewing
-              </a>
+              </Link>
             </motion.div>
           </motion.div>
         )}

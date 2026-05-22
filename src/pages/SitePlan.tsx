@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown } from 'lucide-react';
 
@@ -196,12 +197,12 @@ export default function SitePlan() {
           <h2 className="text-5xl md:text-7xl font-headline italic mb-8">Ready to Walk the Grounds?</h2>
           <p className="text-secondary mb-12 text-lg">Schedule a private guided tour of the available lots with our development specialists.</p>
           <div className="flex flex-col md:flex-row justify-center gap-6">
-            <a
-              href="mailto:info@dearbornwoodsnh.com"
+            <Link
+              to="/contact"
               className="inline-block text-center bg-primary text-on-primary px-12 py-5 font-label uppercase tracking-widest text-xs hover:bg-primary-container transition-colors rounded-xl"
             >
               Book a Site Visit
-            </a>
+            </Link>
           </div>
         </div>
       </section>
