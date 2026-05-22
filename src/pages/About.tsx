@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 
 export default function About() {
@@ -41,20 +42,9 @@ export default function About() {
             <p className="font-body text-lg text-secondary leading-relaxed mb-6">
               With a team of seasoned master builders and artisans, we bring decades of construction expertise to every project, constantly striving to surpass expectations.
             </p>
-            <p className="font-body text-lg text-secondary leading-relaxed mb-8">
+            <p className="font-body text-lg text-secondary leading-relaxed">
               Our mission? Delivering impeccable craftsmanship and nurturing the connections that transform houses into homes.
             </p>
-            <div className="border-t border-outline-variant/40 pt-6 space-y-3">
-              <a href="tel:6034188644" className="block font-body text-sm text-secondary hover:text-primary transition-colors">
-                603-418-8644
-              </a>
-              <a href="mailto:office@riverbirchbuilders.com" className="block font-body text-sm text-secondary hover:text-primary transition-colors">
-                office@riverbirchbuilders.com
-              </a>
-              <a href="https://riverbirchbuilders.com" target="_blank" rel="noopener noreferrer" className="block font-body text-sm text-secondary hover:text-primary transition-colors">
-                riverbirchbuilders.com
-              </a>
-            </div>
           </div>
         </div>
       </motion.section>
@@ -158,16 +148,13 @@ export default function About() {
       >
         <div className="max-w-3xl mx-auto px-6 md:px-12">
           <h2 className="font-headline italic text-4xl md:text-5xl mb-6">Get In Touch</h2>
-          <p className="font-body text-lg mb-10 opacity-80">Ready to start building your dream home at Dearborn Woods? Reach out to the River Birch Builders team today.</p>
-          <div className="flex flex-col md:flex-row justify-center gap-6 mb-10">
-            <a href="mailto:office@riverbirchbuilders.com" className="bg-on-primary text-primary px-10 py-4 text-sm uppercase tracking-[0.2em] font-label hover:bg-surface-container transition-all rounded-xl">
-              Email Us
-            </a>
-            <a href="tel:6032054463" className="border border-on-primary text-on-primary px-10 py-4 text-sm uppercase tracking-[0.2em] font-label hover:bg-on-primary hover:text-primary transition-all rounded-xl">
-              Call 603-205-4463
-            </a>
+          <p className="font-body text-lg mb-10 opacity-80">Ready to start building your dream home at Dearborn Woods? Reach out to the Proulx Real Estate Team Today.</p>
+          <div className="flex justify-center mb-10">
+            <Link to="/contact" className="bg-on-primary text-primary px-10 py-4 text-sm uppercase tracking-[0.2em] font-label hover:bg-surface-container transition-all rounded-xl">
+              Contact Us
+            </Link>
           </div>
-          <p className="font-body text-sm opacity-60">1039 Islington St STE 11, Portsmouth NH 03801</p>
+          <p className="font-body text-sm opacity-60">118 Pleasant St, Portsmouth, NH 03801</p>
         </div>
       </motion.section>
     </main>

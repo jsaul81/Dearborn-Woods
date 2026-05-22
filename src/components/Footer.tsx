@@ -36,7 +36,7 @@ export default function Footer() {
             >
               <img src="/proulx-logo.png" alt="Proulx Real Estate" className="h-14 w-auto max-w-none" />
             </a>
-            <a className="text-stone-400 hover:text-white transition-colors duration-300 font-body font-light text-sm whitespace-nowrap" href="tel:6032051488">Office: 603-205-1488</a>
+            <a className="text-stone-400 hover:text-white transition-colors duration-300 font-body font-light text-sm whitespace-nowrap" href="tel:6032054463">Office: 603-205-4463</a>
           </div>
         </div>
 

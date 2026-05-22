@@ -222,12 +222,12 @@ export default function Home() {
             Your New Home Awaits
           </h2>
           <div className="flex flex-col md:flex-row gap-8 justify-center items-center">
-            <a
-              href="mailto:info@dearbornwoodsnh.com"
+            <Link
+              to="/contact"
               className="inline-block text-center bg-white text-primary px-12 py-5 font-label uppercase tracking-[0.2em] text-xs hover:bg-stone-100 transition-colors rounded-xl"
             >
               Schedule a Tour
-            </a>
+            </Link>
           </div>
         </div>
       </section>
