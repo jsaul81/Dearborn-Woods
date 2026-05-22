@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -80,15 +81,15 @@ export default function Gallery() {
         <div className="max-w-screen-lg mx-auto">
           <span className="font-label uppercase tracking-[0.4em] text-xs text-white/60 mb-8 block">Imagine What's Possible</span>
           <h2 className="text-6xl md:text-8xl font-light font-headline italic leading-tight mb-8">
-            Build Yours at Dearborn
+            Build Yours at Dearborn Woods
           </h2>
           <div className="flex flex-col md:flex-row gap-8 justify-center items-center">
-            <a
-              href="mailto:info@dearbornwoodsnh.com"
+            <Link
+              to="/contact"
               className="inline-block text-center bg-white text-primary px-12 py-5 font-label uppercase tracking-[0.2em] text-xs hover:bg-stone-100 transition-colors rounded-xl"
             >
               Start the Conversation
-            </a>
+            </Link>
           </div>
         </div>
       </section>
