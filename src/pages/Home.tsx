@@ -2,11 +2,12 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { PencilRuler, Trees, MapPin, Hammer, ChevronLeft, ChevronRight } from 'lucide-react';
+import HeroSlideshow from '../components/HeroSlideshow';
 
 const designs = [
-  { title: 'The Belknap', beds: '4 Bedrooms', baths: '3 Bathrooms', sqft: '2,770 SF', img: '/belknap-front.png' },
-  { title: 'The Birchwood', beds: '3 Bedrooms', baths: '3 Bathrooms', sqft: '2,544 SF', img: '/birchwood-front.png' },
-  { title: 'The Dearborn', beds: '3 Bedrooms, 1 Office', baths: '4 Bathrooms', sqft: '3,071 SF', img: '/dearborn-front.png' },
+  { title: 'The Belknap', beds: '4 Bedrooms', baths: '3 Bathrooms', sqft: '2,770 SF', img: '/belknap-front.jpg' },
+  { title: 'The Birchwood', beds: '3 Bedrooms', baths: '3 Bathrooms', sqft: '2,544 SF', img: '/birchwood-front.jpg' },
+  { title: 'The Dearborn', beds: '3 Bedrooms, 1 Office', baths: '4 Bathrooms', sqft: '3,071 SF', img: '/dearborn-front.jpg' },
 ];
 
 function DesignCarousel() {
@@ -75,16 +76,27 @@ export default function Home() {
       {/* Full-screen Hero */}
       <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0 bg-stone-900">
-          <video
-            className="w-full h-full object-cover opacity-60"
-            src="/hero-video.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
+          <HeroSlideshow />
+          {/* Scrim, in three parts, so the photos stay vivid while the type stays readable:
+              a light overall wash, a soft radial pool of shade behind the centered logo and
+              tagline, and a gradient that grounds the navbar at top and the edge at bottom.
+              A heavier flat scrim would read as legible but dull every photo. */}
+          <div className="absolute inset-0 bg-black/25" />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                'radial-gradient(ellipse 45% 42% at 50% 45%, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.35) 45%, rgba(0,0,0,0) 75%)',
+            }}
           />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/35" />
         </div>
         <div className="relative z-10 text-center px-6">
+          {/* The visible masthead is the logo image, so the page's h1 is carried here for
+              search engines and screen readers. */}
+          <h1 className="sr-only">
+            Dearborn Woods - new custom homes in Greenland, New Hampshire, built by River Birch Builders
+          </h1>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -135,12 +147,12 @@ export default function Home() {
           >
             <img 
               className="w-full h-auto object-contain rounded-xl"
-              src="/site-plan.png"
+              src="/site-plan.jpg"
               alt="Dearborn Woods Site Plan"
             />
             <div className="absolute -top-8 -right-16 bg-surface-container-highest p-8 w-64 hidden lg:block rounded-xl shadow-xl">
               <p className="font-headline italic text-xl">"Architecture should speak of its time and place, but yearn for timelessness."</p>
-              <p className="font-label uppercase tracking-widest text-[10px] mt-4">— Frank Gehry</p>
+              <p className="font-label uppercase tracking-widest text-[10px] mt-4">- Frank Gehry</p>
             </div>
           </motion.div>
         </div>

@@ -3,13 +3,36 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
-const photos = Array.from({ length: 21 }, (_, i) => {
-  const num = String(i + 1).padStart(2, '0');
-  return {
-    src: `/gallery/gallery-${num}.jpg`,
-    alt: 'Interior of a River Birch Builders home, photographed by Seacoast RE Photography',
-  };
-});
+// Alt text is written per photo rather than generated: search engines and screen
+// readers both get nothing from 21 copies of the same sentence.
+const photoAlts = [
+  'White oak kitchen island with brass pendant lights, stainless range and built-in wall ovens',
+  'Open kitchen with a long white oak island, brass pendants and wide-plank oak floors',
+  'Kitchen with quartz counters, a brass gooseneck faucet and a window above the sink',
+  'Kitchen corner with open oak shelving, a beverage refrigerator and sliding doors to the deck',
+  'Dining room with board-and-batten wainscoting and a brass chandelier',
+  'Wet bar with white cabinetry, a floating oak shelf and a brass gooseneck faucet',
+  'Double vanity bath with paired arched mirrors, wall sconces and marble tile floor',
+  'Primary bath with a freestanding soaking tub beneath a window on marble tile',
+  'Butler pantry with butcher block counters, white cabinets and open shelving',
+  'Bar area with dark cabinetry, floating oak shelves and a black-framed window',
+  'Mudroom with a navy built-in bench, brass hooks and tile flooring',
+  'Primary bath with a blue tiled walk-in shower, freestanding tub and brass fixtures',
+  'Bath with a freestanding tub, oak double vanity and brass sconces',
+  'Kitchen with a walnut island, plaster range hood and professional stainless range',
+  'Great room with a vaulted beamed ceiling, fireplace and oak floors open to the kitchen',
+  'Kitchen detail with a professional stainless range and patterned tile backsplash',
+  'Butler pantry with stone counters, a beverage refrigerator and brass hardware',
+  'Living room with a beamed ceiling and a fireplace flanked by built-in shelving',
+  'Powder room with green board-and-batten wainscoting and a console sink with brass fittings',
+  'Entry hall with white trim and oak floors looking through to the living room',
+  'Bath with an oak vanity, brass-framed mirror and a tiled tub alcove',
+];
+
+const photos = photoAlts.map((alt, i) => ({
+  src: `/gallery/gallery-${String(i + 1).padStart(2, '0')}.jpg`,
+  alt: `${alt} - a River Birch Builders home in the New Hampshire Seacoast`,
+}));
 
 export default function Gallery() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);

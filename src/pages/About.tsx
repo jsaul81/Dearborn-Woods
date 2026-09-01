@@ -8,6 +8,10 @@ export default function About() {
       <header className="pt-40 pb-16 px-6 md:px-12 max-w-screen-2xl mx-auto">
         <div className="max-w-4xl">
           <p className="font-label text-xs uppercase tracking-[0.2em] text-primary mb-6">About the Builder</p>
+          {/* The builder's logo stands in for the heading visually, so the h1 lives here. */}
+          <h1 className="sr-only">
+            About River Birch Builders, the builder of Dearborn Woods in Greenland, New Hampshire
+          </h1>
           <img
             src="/riverbirch-logo.png"
             alt="River Birch Builders"
@@ -115,7 +119,7 @@ export default function About() {
               <p className="font-headline italic font-light text-3xl md:text-4xl leading-[1.2] text-primary">
                 &ldquo;Real estate is a fascinating mix of art and science that we strive to master for each and every one of our clients.&rdquo;
               </p>
-              <p className="font-label text-[10px] uppercase tracking-[0.25em] text-secondary mt-8">— Proulx Real Estate</p>
+              <p className="font-label text-[10px] uppercase tracking-[0.25em] text-secondary mt-8">- Proulx Real Estate</p>
             </div>
             <div className="border-t border-outline-variant/40 pt-6 space-y-3">
               <a href="tel:6032051488" className="block font-body text-sm text-secondary hover:text-primary transition-colors">
@@ -133,7 +137,7 @@ export default function About() {
             <p className="font-headline italic font-light text-3xl md:text-4xl leading-[1.2] text-primary">
               &ldquo;Real estate is a fascinating mix of art and science that we strive to master for each and every one of our clients.&rdquo;
             </p>
-            <p className="font-label text-[10px] uppercase tracking-[0.25em] text-secondary mt-8">— Proulx Real Estate</p>
+            <p className="font-label text-[10px] uppercase tracking-[0.25em] text-secondary mt-8">- Proulx Real Estate</p>
           </div>
         </div>
       </motion.section>

@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { motion } from 'motion/react';
 
 export default function Privacy() {
@@ -81,7 +82,7 @@ export default function Privacy() {
           <Section title="How we share information">
             <p>
               Information you submit through the contact form, by email, or by phone is shared with the people who need to
-              respond to you &mdash; typically River Birch Builders and Proulx Real Estate. We may also share information
+              respond to you - typically River Birch Builders and Proulx Real Estate. We may also share information
               if required by law, in response to a valid legal request, or to protect the rights, property, or safety of
               our customers, our partners, or the public.
             </p>
@@ -97,7 +98,7 @@ export default function Privacy() {
 
           <Section title="Your choices">
             <p>
-              You can choose not to provide information through the contact form &mdash; you can also reach us by phone if
+              You can choose not to provide information through the contact form - you can also reach us by phone if
               you prefer. If you have submitted information and would like to access it, correct it, or have it deleted,
               email us at{' '}
               <a className="text-primary hover:underline" href="mailto:info@dearbornwoodsnh.com">info@dearbornwoodsnh.com</a>{' '}
@@ -142,7 +143,7 @@ export default function Privacy() {
   );
 }
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
     <section>
       <h2 className="font-headline italic text-2xl md:text-3xl text-on-surface mb-4">{title}</h2>

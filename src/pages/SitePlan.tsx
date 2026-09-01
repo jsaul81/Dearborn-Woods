@@ -32,9 +32,9 @@ export default function SitePlan() {
     { id: '5', size: '1.99 Acres', status: 'Available', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'Elevated position with potential for distant views.' },
     { id: '6', size: '1.93 Acres', status: 'Available', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'Borders conservation land to the west.' },
     { id: '7', size: '1.33 Acres', status: 'Available', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'Quiet interior lot with established tree line.' },
-    { id: '8', size: '1.36 Acres', status: 'Available', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'Adjacent to community green space.' },
+    { id: '8', size: '1.38 Acres', status: 'Available', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'Adjacent to community green space.' },
     { id: '9', size: '1.39 Acres', status: 'Available', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'Corner lot with dual road access potential.' },
-    { id: '10', size: '1.43 Acres', status: 'Available', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'Backs to mature forest preserve.' },
+    { id: '10', size: '1.43 Acres', status: 'Under Contract', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'Backs to mature forest preserve.' },
     { id: '11', size: '1.46 Acres', status: 'Available', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'Open meadow with perimeter tree line.' },
     { id: '12', size: '1.44 Acres', status: 'Sold', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'Premium end-of-road location.' },
     { id: '13', size: '1.48 Acres', status: 'Sold', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'Southern exposure with natural drainage.' },
@@ -66,7 +66,7 @@ export default function SitePlan() {
             <div className="relative">
               <img
                 className="w-full h-auto object-contain"
-                src="/site-plan.png"
+                src="/site-plan.jpg"
                 alt="Site Plan Map"
               />
               <svg

@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { motion } from 'motion/react';
 
 export default function Terms() {
@@ -45,8 +46,8 @@ export default function Terms() {
 
           <Section title="Not a real-estate offer">
             <p>
-              Information on this Site &mdash; including lot status, floor plans, square footage, room counts, finishes,
-              pricing, availability, and photographs &mdash; is provided for general informational purposes and is subject
+              Information on this Site - including lot status, floor plans, square footage, room counts, finishes,
+              pricing, availability, and photographs - is provided for general informational purposes and is subject
               to change without notice. Nothing on this Site constitutes an offer to sell, a solicitation of an offer to
               buy, or a binding representation about any property or home. Any actual purchase of a home or lot at Dearborn
               Woods will be governed by a separate written purchase and sale agreement and any applicable state and
@@ -75,8 +76,8 @@ export default function Terms() {
 
           <Section title="Intellectual property">
             <p>
-              Site content &mdash; including text, photography, floor plans, illustrations, the painted site plan, logos,
-              and graphics &mdash; is the property of Dearborn Woods, River Birch Builders, Proulx Real Estate, or their
+              Site content - including text, photography, floor plans, illustrations, the painted site plan, logos,
+              and graphics - is the property of Dearborn Woods, River Birch Builders, Proulx Real Estate, or their
               respective photographers and licensors, and is protected by U.S. and international intellectual property laws.
               River Birch Builders and Proulx Real Estate logos are trademarks of their respective owners and are used here
               with permission. You may not use any of these marks without the owner&rsquo;s prior written permission.
@@ -154,7 +155,7 @@ export default function Terms() {
   );
 }
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
     <section>
       <h2 className="font-headline italic text-2xl md:text-3xl text-on-surface mb-4">{title}</h2>

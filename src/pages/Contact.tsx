@@ -12,7 +12,7 @@ export default function Contact() {
     setStatus('submitting');
     const formData = new FormData(e.currentTarget);
     const formEl = e.currentTarget;
-    // Show success on 2xx, 5xx, and network errors — the PHP handler reliably
+    // Show success on 2xx, 5xx, and network errors - the PHP handler reliably
     // delivers the email even when the browser loses the response. Only flag a
     // real error when PHP returns 400 (input validation failed).
     try {
@@ -48,7 +48,7 @@ export default function Contact() {
         <div className="lg:col-span-7 bg-surface-container-low p-8 md:p-12 lg:p-20 rounded-xl shadow-sm">
           {status !== 'success' ? (
             <form className="space-y-12" onSubmit={handleSubmit}>
-              {/* Honeypot — humans don't see this; bots fill it and get silently dropped server-side. */}
+              {/* Honeypot - humans don't see this; bots fill it and get silently dropped server-side. */}
               <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div className="relative">
@@ -235,7 +235,7 @@ export default function Contact() {
                 transition={{ duration: 0.6, delay: 1.7, ease: 'easeOut' }}
                 className="font-headline italic text-base text-secondary mt-12"
               >
-                &mdash; The Dearborn Woods Team
+                - The Dearborn Woods Team
               </motion.p>
             </motion.div>
           )}
@@ -272,7 +272,7 @@ export default function Contact() {
             <div className="w-full flex-1 min-h-[300px] relative">
               <img
                 className="absolute inset-0 w-full h-full object-contain object-left hover:opacity-90 transition-opacity duration-700"
-                src="/site-plan.png"
+                src="/site-plan.jpg"
                 alt="Site map"
               />
             </div>
@@ -284,7 +284,7 @@ export default function Contact() {
         <div className="h-[614px] w-full relative overflow-hidden rounded-xl shadow-2xl">
           <img
             className="w-full h-full object-cover"
-            src="/belknap-front.png"
+            src="/belknap-front.jpg"
             alt="Belknap home exterior"
           />
           <div className="absolute inset-0 bg-black/20"></div>

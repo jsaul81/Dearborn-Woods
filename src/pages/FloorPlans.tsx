@@ -128,7 +128,7 @@ export default function FloorPlans() {
       beds: '4 Bedrooms',
       baths: '3 Bathrooms',
       parking: '2 Cars',
-      images: ['/belknap-front.png', '/belknap-floorplan.png'],
+      images: ['/belknap-front.jpg', '/belknap-floorplan.png'],
     },
     {
       name: 'The Birchwood',
@@ -137,7 +137,7 @@ export default function FloorPlans() {
       beds: '3 Bedrooms',
       baths: '3 Bathrooms',
       parking: '2 Cars',
-      images: ['/birchwood-front.png', '/birchwood-floorplan.jpg'],
+      images: ['/birchwood-front.jpg', '/birchwood-floorplan.jpg'],
     },
     {
       name: 'The Dearborn',
@@ -146,7 +146,7 @@ export default function FloorPlans() {
       beds: '3 Bedrooms, 1 Office',
       baths: '4 Bathrooms',
       parking: '3 Cars',
-      images: ['/dearborn-front.png', '/dearborn-floorplan.png'],
+      images: ['/dearborn-front.jpg', '/dearborn-floorplan.png'],
     }
   ];
 

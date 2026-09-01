@@ -3,12 +3,136 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="robots" content="noindex, nofollow" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="64x64" href="/favicon-64.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
     <link rel="apple-touch-icon" sizes="512x512" href="/favicon-512.png" />
-    <title>Dearborn Woods — Greenland, NH</title>
+    <title>Dearborn Woods - New Custom Homes in Greenland, NH</title>
+    <meta
+      name="description"
+      content="Dearborn Woods is a 13-lot custom home community in Greenland, New Hampshire, built by River Birch Builders. View available lots, floor plans and the site plan."
+    />
+    <link rel="canonical" href="https://dearbornwoodsnh.com/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Dearborn Woods" />
+    <meta property="og:title" content="Dearborn Woods - New Custom Homes in Greenland, NH" />
+    <meta
+      property="og:description"
+      content="A 13-lot custom home community in Greenland, New Hampshire, built by River Birch Builders. View available lots, floor plans and the site plan."
+    />
+    <meta property="og:url" content="https://dearbornwoodsnh.com/" />
+    <meta property="og:image" content="https://dearbornwoodsnh.com/site-plan.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!--
+      Structured data. Every value here is stated somewhere on the site itself - no prices,
+      no invented URLs, no coordinates. Lot availability is deliberately omitted because it
+      changes and stale structured data is worse than none.
+    -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://dearbornwoodsnh.com/#website",
+            "url": "https://dearbornwoodsnh.com/",
+            "name": "Dearborn Woods",
+            "inLanguage": "en-US",
+            "about": { "@id": "https://dearbornwoodsnh.com/#development" }
+          },
+          {
+            "@type": "GeneralContractor",
+            "@id": "https://dearbornwoodsnh.com/#riverbirch",
+            "name": "River Birch Builders",
+            "slogan": "Crafting Homes. Building Community.",
+            "description": "River Birch Builders is the builder of Dearborn Woods, a 13-lot custom home community in Greenland, New Hampshire. The firm brings decades of construction expertise to every project.",
+            "logo": "https://dearbornwoodsnh.com/riverbirch-logo.png",
+            "image": "https://dearbornwoodsnh.com/riverbirch-logo.png",
+            "areaServed": {
+              "@type": "AdministrativeArea",
+              "name": "Seacoast New Hampshire"
+            }
+          },
+          {
+            "@type": "RealEstateAgent",
+            "@id": "https://dearbornwoodsnh.com/#proulx",
+            "name": "Proulx Real Estate",
+            "description": "Proulx Real Estate is the listing brokerage for Dearborn Woods in Greenland, New Hampshire. The firm is consistently in the top 1 percent of agents in the NH Seacoast with more than 1,000 lifetime sales.",
+            "url": "https://www.proulxrealestate.com",
+            "telephone": "+1-603-205-1488",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "118 Pleasant Street",
+              "addressLocality": "Portsmouth",
+              "addressRegion": "NH",
+              "postalCode": "03801",
+              "addressCountry": "US"
+            },
+            "areaServed": {
+              "@type": "AdministrativeArea",
+              "name": "Seacoast New Hampshire"
+            }
+          },
+          {
+            "@type": "Place",
+            "@id": "https://dearbornwoodsnh.com/#development",
+            "name": "Dearborn Woods",
+            "description": "Dearborn Woods is a 13-lot custom home community in Greenland, New Hampshire, set on Dearborn Road and Wentworth Drive. The homes are built by River Birch Builders, and Proulx Real Estate is the listing brokerage for the community. Three home designs are offered: The Belknap, The Birchwood and The Dearborn.",
+            "url": "https://dearbornwoodsnh.com/",
+            "image": "https://dearbornwoodsnh.com/site-plan.jpg",
+            "telephone": "+1-603-205-4463",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Wentworth Drive",
+              "addressLocality": "Greenland",
+              "addressRegion": "NH",
+              "postalCode": "03840",
+              "addressCountry": "US"
+            },
+            "containsPlace": [
+              { "@id": "https://dearbornwoodsnh.com/#belknap" },
+              { "@id": "https://dearbornwoodsnh.com/#birchwood" },
+              { "@id": "https://dearbornwoodsnh.com/#dearborn" }
+            ]
+          },
+          {
+            "@type": "SingleFamilyResidence",
+            "@id": "https://dearbornwoodsnh.com/#belknap",
+            "name": "The Belknap",
+            "description": "A four-bedroom home design at Dearborn Woods with modern farmhouse detailing and a two-car garage.",
+            "image": "https://dearbornwoodsnh.com/belknap-front.jpg",
+            "numberOfBedrooms": 4,
+            "numberOfBathroomsTotal": 3,
+            "floorSize": { "@type": "QuantitativeValue", "value": 2770, "unitCode": "FTK" },
+            "containedInPlace": { "@id": "https://dearbornwoodsnh.com/#development" }
+          },
+          {
+            "@type": "SingleFamilyResidence",
+            "@id": "https://dearbornwoodsnh.com/#birchwood",
+            "name": "The Birchwood",
+            "description": "A three-bedroom home design at Dearborn Woods that maximizes living space with a two-car garage.",
+            "image": "https://dearbornwoodsnh.com/birchwood-front.jpg",
+            "numberOfBedrooms": 3,
+            "numberOfBathroomsTotal": 3,
+            "floorSize": { "@type": "QuantitativeValue", "value": 2544, "unitCode": "FTK" },
+            "containedInPlace": { "@id": "https://dearbornwoodsnh.com/#development" }
+          },
+          {
+            "@type": "SingleFamilyResidence",
+            "@id": "https://dearbornwoodsnh.com/#dearborn",
+            "name": "The Dearborn",
+            "description": "The signature home design at Dearborn Woods, with three bedrooms plus a dedicated office and a three-car garage.",
+            "image": "https://dearbornwoodsnh.com/dearborn-front.jpg",
+            "numberOfBedrooms": 3,
+            "numberOfBathroomsTotal": 4,
+            "floorSize": { "@type": "QuantitativeValue", "value": 3071, "unitCode": "FTK" },
+            "containedInPlace": { "@id": "https://dearbornwoodsnh.com/#development" }
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
