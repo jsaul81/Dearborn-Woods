@@ -1,6 +1,17 @@
 Options -MultiViews
 RewriteEngine On
 RewriteBase /
+
+# Serve the prerendered HTML for a route when one exists, e.g. /floor-plans -> /floor-plans.html.
+# Mapped rather than redirected so the URL the visitor asked for is the URL that is served,
+# which keeps it consistent with each page's canonical tag.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}.html -f
+RewriteRule ^(.*)$ /$1.html [L]
+
+# Anything else falls through to the SPA shell so client-side routes still work
+# on a hard reload.
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^ index.html [L]

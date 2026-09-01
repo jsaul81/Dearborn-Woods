@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import RouteMeta from './components/RouteMeta';
 import Home from './pages/Home';
 import FloorPlans from './pages/FloorPlans';
 import SitePlan from './pages/SitePlan';
@@ -28,6 +29,7 @@ export default function App() {
   return (
     <Router>
       <ScrollToTop />
+      <RouteMeta />
       <div className="min-h-screen flex flex-col">
         <Navbar />
         <div className="flex-grow">
