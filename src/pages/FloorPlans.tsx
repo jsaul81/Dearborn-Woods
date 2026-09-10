@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { Maximize2, ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { Maximize2, ChevronLeft, ChevronRight, X, Download } from 'lucide-react';
 
 function ImageSlider({ images, name }: { images: string[]; name: string }) {
   const [current, setCurrent] = useState(0);
@@ -129,6 +129,7 @@ export default function FloorPlans() {
       baths: '3 Bathrooms',
       parking: '2 Cars',
       images: ['/belknap-front.jpg', '/belknap-floorplan.png'],
+      plan: '/belknap-floorplan.png',
     },
     {
       name: 'The Birchwood',
@@ -138,6 +139,7 @@ export default function FloorPlans() {
       baths: '3 Bathrooms',
       parking: '2 Cars',
       images: ['/birchwood-front.jpg', '/birchwood-floorplan.jpg'],
+      plan: '/birchwood-floorplan.jpg',
     },
     {
       name: 'The Dearborn',
@@ -147,6 +149,27 @@ export default function FloorPlans() {
       baths: '4 Bathrooms',
       parking: '3 Cars',
       images: ['/dearborn-front.jpg', '/dearborn-floorplan.png'],
+      plan: '/dearborn-floorplan.png',
+    },
+    {
+      name: 'The Wentworth',
+      desc: 'The largest design at Dearborn Woods, with four bedrooms, four bathrooms and a three-car garage across just under 4,000 square feet.',
+      area: '3,988 Sq Ft',
+      beds: '4 Bedrooms',
+      baths: '4 Bathrooms',
+      parking: '3 Cars',
+      images: ['/wentworth-front.jpg', '/wentworth-floorplan.png'],
+      plan: '/wentworth-floorplan.pdf',
+    },
+    {
+      name: 'The Ona Judge',
+      desc: 'A four-bedroom design with a walk-out lower level and open first-floor living, offering generous space on an efficient footprint.',
+      area: '3,315 Sq Ft',
+      beds: '4 Bedrooms',
+      baths: '3 Bathrooms',
+      parking: '2 Cars',
+      images: ['/ona-judge-front.jpg', '/ona-judge-floorplan.png'],
+      plan: '/ona-judge-floorplan.pdf',
     }
   ];
 
@@ -189,19 +212,30 @@ export default function FloorPlans() {
                   <h2 className="text-5xl font-light font-headline mb-4">{model.name}</h2>
                   <p className="text-secondary leading-relaxed font-light">{model.desc}</p>
                 </div>
-                <div className="space-y-6 mb-12">
+                <div className="space-y-6 mb-8">
                   {[
                     { label: 'Total Area', value: model.area },
                     { label: 'Bedrooms', value: model.beds },
                     { label: 'Bathrooms', value: model.baths },
                     { label: 'Garage Capacity', value: model.parking },
                   ].map((spec) => (
-                    <div key={spec.label} className="flex justify-between items-end border-b border-outline-variant/30 pb-2">
-                      <span className="font-label uppercase tracking-wider text-[10px] text-secondary">{spec.label}</span>
-                      <span className="font-headline italic text-xl">{spec.value}</span>
+                    <div key={spec.label} className="flex justify-between items-end gap-4 border-b border-outline-variant/30 pb-3">
+                      <span className="font-label uppercase tracking-wider text-sm text-secondary">{spec.label}</span>
+                      <span className="font-headline italic text-2xl">{spec.value}</span>
                     </div>
                   ))}
                 </div>
+
+                {/* Download the full-size plan - the on-page viewer is capped by its 16:9 frame,
+                    so this is how someone actually reads the room dimensions. */}
+                <a
+                  href={model.plan}
+                  download
+                  className="inline-flex items-center gap-2.5 mb-12 px-5 py-3 border border-primary text-primary rounded-lg font-label uppercase tracking-[0.1em] text-xs hover:bg-primary hover:text-white transition-colors"
+                >
+                  <Download className="w-4 h-4" />
+                  Download Floor Plan
+                </a>
               </div>
             </motion.div>
           </div>

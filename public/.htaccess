@@ -1,17 +1,20 @@
-Options -MultiViews
+Options -MultiViews -Indexes
+# mod_dir would otherwise redirect /gallery to /gallery/ before the rules below run.
+DirectorySlash Off
+
 RewriteEngine On
 RewriteBase /
 
 # Serve the prerendered HTML for a route when one exists, e.g. /floor-plans -> /floor-plans.html.
-# Mapped rather than redirected so the URL the visitor asked for is the URL that is served,
-# which keeps it consistent with each page's canonical tag.
+# Note there is deliberately NO !-d check here: /gallery is both a route AND a folder of photos,
+# and without this the folder wins and Apache returns 403. Real files still short-circuit on !-f,
+# so /gallery/gallery-01.jpg is served normally.
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}.html -f
 RewriteRule ^(.*)$ /$1.html [L]
 
-# Anything else falls through to the SPA shell so client-side routes still work
-# on a hard reload.
+# Anything else that is not a real file falls through to the SPA shell so client-side
+# routes still work on a hard reload.
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^ index.html [L]

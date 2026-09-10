@@ -26,7 +26,7 @@ export const routeMeta: Record<string, RouteMeta> = {
   '/floor-plans': {
     title: 'Floor Plans - Dearborn Woods, Greenland NH',
     description:
-      'Three home designs at Dearborn Woods: The Belknap (4 bed, 2,770 sq ft), The Birchwood (3 bed, 2,544 sq ft) and The Dearborn (3 bed plus office, 3,071 sq ft).',
+      'Five home designs at Dearborn Woods, from 2,544 to 3,988 square feet: The Belknap, The Birchwood, The Dearborn, The Wentworth and The Ona Judge. Downloadable plans.',
   },
   '/site-plan': {
     title: 'Site Plan and Lot Availability - Dearborn Woods',
