@@ -153,10 +153,10 @@ export default function FloorPlans() {
     },
     {
       name: 'The Wentworth',
-      desc: 'The largest design at Dearborn Woods, with four bedrooms, four bathrooms and a three-car garage across just under 4,000 square feet.',
+      desc: 'The largest design at Dearborn Woods, with four bedrooms, five bathrooms and a three-car garage across just under 4,000 square feet.',
       area: '3,988 Sq Ft',
       beds: '4 Bedrooms',
-      baths: '4 Bathrooms',
+      baths: '5 Bathrooms',
       parking: '3 Cars',
       images: ['/wentworth-front.jpg', '/wentworth-floorplan.png'],
       plan: '/wentworth-floorplan.pdf',

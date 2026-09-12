@@ -8,7 +8,7 @@ const designs = [
   { title: 'The Belknap', beds: '4 Bedrooms', baths: '3 Bathrooms', sqft: '2,770 SF', img: '/belknap-front.jpg' },
   { title: 'The Birchwood', beds: '3 Bedrooms', baths: '3 Bathrooms', sqft: '2,544 SF', img: '/birchwood-front.jpg' },
   { title: 'The Dearborn', beds: '3 Bedrooms, 1 Office', baths: '4 Bathrooms', sqft: '3,071 SF', img: '/dearborn-front.jpg' },
-  { title: 'The Wentworth', beds: '4 Bedrooms', baths: '4 Bathrooms', sqft: '3,988 SF', img: '/wentworth-front.jpg' },
+  { title: 'The Wentworth', beds: '4 Bedrooms', baths: '5 Bathrooms', sqft: '3,988 SF', img: '/wentworth-front.jpg' },
   { title: 'The Ona Judge', beds: '4 Bedrooms', baths: '3 Bathrooms', sqft: '3,315 SF', img: '/ona-judge-front.jpg' },
 ];
 
