@@ -33,7 +33,7 @@ export default function SitePlan() {
     { id: '6', size: '1.93 Acres', status: 'Available', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'Borders conservation land to the west.' },
     { id: '7', size: '1.33 Acres', status: 'Available', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'Quiet interior lot with established tree line.' },
     { id: '8', size: '1.38 Acres', status: 'Available', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'Adjacent to community green space.' },
-    { id: '9', size: '1.39 Acres', status: 'Available', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'Corner lot with dual road access potential.' },
+    { id: '9', size: '1.39 Acres', status: 'Under Contract', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'Corner lot with dual road access potential.' },
     { id: '10', size: '1.43 Acres', status: 'Under Contract', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'Backs to mature forest preserve.' },
     { id: '11', size: '1.46 Acres', status: 'Available', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'Open meadow with perimeter tree line.' },
     { id: '12', size: '1.44 Acres', status: 'Sold', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'Premium end-of-road location.' },
