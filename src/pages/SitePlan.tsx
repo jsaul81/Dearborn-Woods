@@ -1,7 +1,6 @@
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'motion/react';
-import { ChevronDown } from 'lucide-react';
+import { motion } from 'motion/react';
 
 // SVG polygon points for each lot (percentage-based coordinates mapped to 1000x1000 viewBox)
 const lotPolygons: Record<string, string> = {
@@ -20,24 +19,84 @@ const lotPolygons: Record<string, string> = {
   '13': '761,810 804,655 989,728 963,856',
 };
 
+// House plans that have a published design on /floor-plans, keyed to the anchor each
+// links to. A plan named on the lot list but missing here (Langdon, Gilman and Atkinson
+// as of 2026-11) renders as plain text, so the table never links to a page that does not exist.
+const publishedPlans: Record<string, string> = {
+  Belknap: 'belknap',
+  Birchwood: 'birchwood',
+  Dearborn: 'dearborn',
+  Wentworth: 'wentworth',
+  'Ona Judge': 'ona-judge',
+};
+
+// Sampled from the legend printed on public/site-plan.jpg, so these dots match the map
+// artwork the visitor is looking at (the hover overlay below uses its own tints).
+// Lot | Acreage | Status | House Plan. Widths fit the longest content in each column
+// ("Under Contract", "2.62 Acres") so every row lines up.
+const COLS = 'grid-cols-[2.5rem_6.5rem_9.5rem_1fr]';
+
+const legendColor: Record<string, string> = {
+  Available: 'rgb(133, 146, 83)',
+  'Under Contract': 'rgb(222, 186, 32)',
+  Sold: 'rgb(107, 131, 178)',
+};
+
+function StatusBadge({ status }: { status: string }) {
+  return (
+    <span className={`inline-flex items-center gap-2 px-3 py-1 text-[10px] font-label uppercase tracking-widest rounded-lg whitespace-nowrap ${
+      status === 'Available' ? 'bg-primary/10 text-primary' :
+      status === 'Sold' ? 'bg-secondary/10 text-secondary' :
+      'bg-outline-variant text-on-surface'
+    }`}>
+      {status === 'Available' && <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>}
+      {status}
+    </span>
+  );
+}
+
+function PlanNames({ plans }: { plans: string[] }) {
+  if (plans.length === 0) {
+    return <span className="font-body text-sm italic text-outline">To be determined</span>;
+  }
+  return (
+    <>
+      {plans.map((name, i) => (
+        <Fragment key={name}>
+          {i > 0 && <span className="font-body text-xs text-outline mx-1.5">or</span>}
+          {publishedPlans[name] ? (
+            <Link
+              to={`/floor-plans#${publishedPlans[name]}`}
+              className="font-headline italic text-base text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary transition-colors whitespace-nowrap"
+            >
+              {name}
+            </Link>
+          ) : (
+            <span className="font-headline italic text-base whitespace-nowrap">{name}</span>
+          )}
+        </Fragment>
+      ))}
+    </>
+  );
+}
+
 export default function SitePlan() {
   const [hoveredLot, setHoveredLot] = useState<string | null>(null);
-  const [expandedLot, setExpandedLot] = useState<string | null>(null);
 
   const lots = [
-    { id: '1', size: '1.42 Acres', status: 'Sold', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'Private cul-de-sac location with mature oak canopy.' },
-    { id: '2', size: '2.62 Acres', status: 'Available', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'Largest lot in the development. Corner position with maximum privacy.' },
-    { id: '3', size: '1.44 Acres', status: 'Available', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'South-facing exposure ideal for natural light.' },
-    { id: '4', size: '2.07 Acres', status: 'Under Contract', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'Central lot with views of surrounding woodlands.' },
-    { id: '5', size: '1.99 Acres', status: 'Available', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'Elevated position with potential for distant views.' },
-    { id: '6', size: '1.93 Acres', status: 'Available', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'Borders conservation land to the west.' },
-    { id: '7', size: '1.33 Acres', status: 'Available', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'Quiet interior lot with established tree line.' },
-    { id: '8', size: '1.38 Acres', status: 'Available', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'Adjacent to community green space.' },
-    { id: '9', size: '1.39 Acres', status: 'Under Contract', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'Corner lot with dual road access potential.' },
-    { id: '10', size: '1.43 Acres', status: 'Under Contract', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'Backs to mature forest preserve.' },
-    { id: '11', size: '1.46 Acres', status: 'Available', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'Open meadow with perimeter tree line.' },
-    { id: '12', size: '1.44 Acres', status: 'Sold', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'Premium end-of-road location.' },
-    { id: '13', size: '1.48 Acres', status: 'Sold', terrain: 'N/A', frontage: '0 ft', setback: '0 ft', utilities: 'N/A', notes: 'Southern exposure with natural drainage.' },
+    { id: '1', size: '1.42 Acres', status: 'Sold', plans: ['Ona Judge'] },
+    { id: '2', size: '2.62 Acres', status: 'Available', plans: ['Birchwood', 'Belknap'] },
+    { id: '3', size: '1.44 Acres', status: 'Available', plans: ['Dearborn'] },
+    { id: '4', size: '2.07 Acres', status: 'Under Contract', plans: ['Langdon'] },
+    { id: '5', size: '1.99 Acres', status: 'Available', plans: ['Birchwood', 'Belknap'] },
+    { id: '6', size: '1.93 Acres', status: 'Available', plans: [] },
+    { id: '7', size: '1.33 Acres', status: 'Available', plans: [] },
+    { id: '8', size: '1.38 Acres', status: 'Available', plans: ['Gilman'] },
+    { id: '9', size: '1.39 Acres', status: 'Under Contract', plans: ['Atkinson'] },
+    { id: '10', size: '1.43 Acres', status: 'Under Contract', plans: ['Wentworth'] },
+    { id: '11', size: '1.46 Acres', status: 'Available', plans: ['Wentworth'] },
+    { id: '12', size: '1.44 Acres', status: 'Sold', plans: ['Belknap'] },
+    { id: '13', size: '1.48 Acres', status: 'Sold', plans: ['Birchwood'] },
   ];
 
   const getLotColor = (status: string) => {
@@ -62,7 +121,7 @@ export default function SitePlan() {
 
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Interactive Site Plan Map */}
-          <div className="lg:w-1/2 relative overflow-hidden bg-surface-container rounded-xl shadow-2xl">
+          <div className="lg:w-1/2 lg:sticky lg:top-28 lg:self-start relative overflow-hidden bg-surface-container rounded-xl shadow-2xl">
             <div className="relative">
               <img
                 className="w-full h-auto object-contain"
@@ -99,90 +158,62 @@ export default function SitePlan() {
           <div className="lg:w-1/2">
             <div className="mb-6">
               <h2 className="text-3xl font-headline italic mb-1">Lot Inventory</h2>
-              <p className="text-secondary font-body text-sm">Available parcels for custom builds and pre-designed residences.</p>
+              <p className="text-secondary font-body text-sm">Each lot and the home planned for it. Select a plan to view its floor plan.</p>
             </div>
 
-            <div className="overflow-y-auto no-scrollbar max-h-[600px]">
-              {/* Header */}
-              <div className="sticky top-0 bg-surface z-10 grid grid-cols-[40px_1fr_1fr_1fr] items-center border-b border-outline-variant/30 pb-3">
-                <span className="font-label uppercase tracking-[0.15em] text-[10px] text-outline">Lot</span>
-                <span className="font-label uppercase tracking-[0.15em] text-[10px] text-outline">Acreage</span>
-                <span className="font-label uppercase tracking-[0.15em] text-[10px] text-outline">Status</span>
-                <span className="font-label uppercase tracking-[0.15em] text-[10px] text-outline text-right">Action</span>
+            {/* At-a-glance counts, derived from the data so they can never drift from the table */}
+            <div className="flex flex-wrap gap-x-6 gap-y-2 mb-6">
+              {(['Available', 'Under Contract', 'Sold'] as const).map((status) => (
+                <span key={status} className="inline-flex items-center gap-2 font-label text-xs uppercase tracking-widest text-secondary">
+                  <span
+                    className="w-2.5 h-2.5 rounded-full"
+                    style={{ background: legendColor[status] }}
+                  />
+                  <span className="text-on-surface font-medium">{lots.filter((l) => l.status === status).length}</span>
+                  {status}
+                </span>
+              ))}
+            </div>
+
+            {/* All 13 rows shown in full. The old fixed-height box hid its scrollbar, so the
+                last lots were invisible with no cue that anything was below. */}
+            <div>
+              {/* Header - desktop only; the mobile rows below are self-describing */}
+              <div className={`hidden md:grid ${COLS} gap-x-3 items-center border-b border-outline-variant/30 pb-3`}>
+                <span className="font-label uppercase tracking-[0.15em] text-[11px] text-outline">Lot</span>
+                <span className="font-label uppercase tracking-[0.15em] text-[11px] text-outline">Acreage</span>
+                <span className="font-label uppercase tracking-[0.15em] text-[11px] text-outline">Status</span>
+                <span className="font-label uppercase tracking-[0.15em] text-[11px] text-outline">House Plan</span>
               </div>
 
-              {/* Rows */}
-              <div className="divide-y divide-outline-variant/20">
+              <div className="divide-y divide-outline-variant/20 border-t border-outline-variant/30 md:border-t-0">
                 {lots.map((lot) => (
                   <div
                     key={lot.id}
                     onMouseEnter={() => setHoveredLot(lot.id)}
                     onMouseLeave={() => setHoveredLot(null)}
+                    className={`px-3 -mx-3 rounded-lg transition-colors ${
+                      hoveredLot === lot.id ? 'bg-primary/10' : 'hover:bg-surface-container'
+                    }`}
                   >
-                    <div
-                      className={`grid grid-cols-[40px_1fr_1fr_1fr] items-center cursor-pointer transition-colors px-3 -mx-3 rounded-lg ${
-                        hoveredLot === lot.id ? 'bg-primary/10' : 'hover:bg-surface-container'
-                      }`}
-                    >
-                      <span className="py-3 font-headline italic text-base">{lot.id}</span>
-                      <span className="py-3 font-body text-sm">{lot.size}</span>
-                      <span className="py-3">
-                        <span className={`inline-flex items-center gap-2 px-3 py-1 text-[9px] font-label uppercase tracking-widest rounded-lg ${
-                          lot.status === 'Available' ? 'bg-primary/10 text-primary' :
-                          lot.status === 'Sold' ? 'bg-secondary/10 text-secondary' :
-                          'bg-outline-variant text-on-surface'
-                        }`}>
-                          {lot.status === 'Available' && <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>}
-                          {lot.status}
-                        </span>
-                      </span>
-                      <span className="py-3 text-right">
-                        {lot.status === 'Sold' ? (
-                          <span className="font-label text-[10px] uppercase tracking-widest opacity-30">Sold</span>
-                        ) : (
-                          <button
-                            onClick={() => setExpandedLot(expandedLot === lot.id ? null : lot.id)}
-                            className="text-primary font-label text-[10px] uppercase tracking-widest inline-flex items-center gap-1 hover:opacity-70 transition-all"
-                          >
-                            {expandedLot === lot.id ? 'Close' : 'View Details'}
-                            <ChevronDown className={`w-3 h-3 transition-transform ${expandedLot === lot.id ? 'rotate-180' : ''}`} />
-                          </button>
-                        )}
-                      </span>
+                    {/* Desktop: four aligned columns. Fixed widths, because each row is its own
+                        grid - fractional widths let every row size itself and the columns drift. */}
+                    <div className={`hidden md:grid ${COLS} gap-x-3 items-center py-3.5`}>
+                      <span className="font-headline italic text-lg">{lot.id}</span>
+                      <span className="font-body text-sm whitespace-nowrap">{lot.size}</span>
+                      <span><StatusBadge status={lot.status} /></span>
+                      <span className="leading-snug"><PlanNames plans={lot.plans} /></span>
                     </div>
-                    <AnimatePresence>
-                      {expandedLot === lot.id && lot.status !== 'Sold' && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: 'auto', opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="overflow-hidden"
-                        >
-                          <div className="px-4 pb-4 pt-2 bg-surface-container/50 rounded-b-lg">
-                            <div className="grid grid-cols-2 gap-3 mb-3">
-                              <div>
-                                <span className="font-label text-[9px] uppercase tracking-widest text-outline block">Terrain</span>
-                                <span className="font-body text-sm">{lot.terrain}</span>
-                              </div>
-                              <div>
-                                <span className="font-label text-[9px] uppercase tracking-widest text-outline block">Road Frontage</span>
-                                <span className="font-body text-sm">{lot.frontage}</span>
-                              </div>
-                              <div>
-                                <span className="font-label text-[9px] uppercase tracking-widest text-outline block">Setback</span>
-                                <span className="font-body text-sm">{lot.setback}</span>
-                              </div>
-                              <div>
-                                <span className="font-label text-[9px] uppercase tracking-widest text-outline block">Utilities</span>
-                                <span className="font-body text-sm">{lot.utilities}</span>
-                              </div>
-                            </div>
-                            <p className="text-secondary text-xs leading-relaxed italic">{lot.notes}</p>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
+
+                    {/* Mobile: four columns do not fit, so plan and acreage stack beside the lot number */}
+                    <div className="md:hidden flex items-center gap-4 py-4">
+                      <span className="font-headline italic text-2xl w-8 shrink-0">{lot.id}</span>
+                      <div className="flex-1 min-w-0">
+                        <div className="leading-snug"><PlanNames plans={lot.plans} /></div>
+                        <div className="font-body text-xs text-secondary mt-1">{lot.size}</div>
+                      </div>
+                      <span className="shrink-0"><StatusBadge status={lot.status} /></span>
+                    </div>
                   </div>
                 ))}
               </div>

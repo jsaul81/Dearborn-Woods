@@ -123,6 +123,7 @@ export default function FloorPlans() {
   const models = [
     {
       name: 'The Belknap',
+      slug: 'belknap',
       desc: 'A thoughtfully designed 4-bedroom home featuring quality craftsmanship and modern farmhouse aesthetics, perfectly suited for the Dearborn Woods community.',
       area: '2,770 Sq Ft',
       beds: '4 Bedrooms',
@@ -133,6 +134,7 @@ export default function FloorPlans() {
     },
     {
       name: 'The Birchwood',
+      slug: 'birchwood',
       desc: 'An efficient and elegant 3-bedroom design that maximizes living space while maintaining the warmth and character that defines Dearborn Woods.',
       area: '2,544 Sq Ft',
       beds: '3 Bedrooms',
@@ -143,6 +145,7 @@ export default function FloorPlans() {
     },
     {
       name: 'The Dearborn',
+      slug: 'dearborn',
       desc: 'Our signature floor plan featuring 3 bedrooms plus a dedicated office, offering versatile living with generous proportions and premium finishes throughout.',
       area: '3,071 Sq Ft',
       beds: '3 Bedrooms, 1 Office',
@@ -153,6 +156,7 @@ export default function FloorPlans() {
     },
     {
       name: 'The Wentworth',
+      slug: 'wentworth',
       desc: 'The largest design at Dearborn Woods, with four bedrooms, five bathrooms and a three-car garage across just under 4,000 square feet.',
       area: '3,988 Sq Ft',
       beds: '4 Bedrooms',
@@ -163,6 +167,7 @@ export default function FloorPlans() {
     },
     {
       name: 'The Ona Judge',
+      slug: 'ona-judge',
       desc: 'A four-bedroom design with a walk-out lower level and open first-floor living, offering generous space on an efficient footprint.',
       area: '3,315 Sq Ft',
       beds: '4 Bedrooms',
@@ -183,11 +188,12 @@ export default function FloorPlans() {
       {models.map((model, index) => (
         <motion.section
           key={model.name}
+          id={model.slug}
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.15 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="px-6 md:px-12 mb-20 max-w-screen-2xl mx-auto"
+          className="px-6 md:px-12 mb-20 max-w-screen-2xl mx-auto scroll-mt-36"
         >
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
             <motion.div

@@ -18,10 +18,19 @@ import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
 
 function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   useEffect(() => {
+    // A link like /floor-plans#wentworth (used by the Site Plan's lot table) should land on
+    // that design, not the top of the page. The target page renders in the same commit, so
+    // wait one tick for its sections to exist before looking for the anchor.
+    if (hash) {
+      const t = setTimeout(() => {
+        document.getElementById(decodeURIComponent(hash.slice(1)))?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 60);
+      return () => clearTimeout(t);
+    }
     window.scrollTo(0, 0);
-  }, [pathname]);
+  }, [pathname, hash]);
   return null;
 }
 
